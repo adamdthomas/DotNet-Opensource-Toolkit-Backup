@@ -13,29 +13,29 @@ namespace Toolkit
         FirefoxDriver _driver;
 
 
-
-        [TestMethod]
-        public void isAlertPresent()
+        [TestInitialize]
+        public void startup()
         {
             _driver = new FirefoxDriver();
             _driver.Navigate().GoToUrl("http://orasi.github.io/Selenium-Java-Core/sites/unitTests/orasi/utils/alertHandler.html");
+        }
+        [TestMethod]
+        public void isAlertPresent()
+        {
             Assert.IsTrue(AlertHandler.isAlertPresent(_driver, 3));
         }
 
         [TestMethod]
         public void handleAlertTest()
         {
-            _driver = new FirefoxDriver();
-            _driver.Navigate().GoToUrl("http://orasi.github.io/Selenium-Java-Core/sites/unitTests/orasi/utils/alertHandler.html");
             Assert.IsTrue(AlertHandler.handleAlert(_driver,3));
         }
 
         [TestMethod]
         public void handleAllAlertTest()
         {
-            _driver = new FirefoxDriver();
-            _driver.Navigate().GoToUrl("http://orasi.github.io/Selenium-Java-Core/sites/unitTests/orasi/utils/alertHandler.html");
             Assert.IsTrue(AlertHandler.handleAllAlerts(_driver, 2));
+            Assert.IsTrue(_driver.FindElement(By.Id("button")).Enabled);
         }
 
         [TestCleanup]
