@@ -8,9 +8,16 @@ using OpenQA.Selenium.Support.UI;
 
 namespace Toolkit.Utils
 {
+    /// <summary>
+    /// Class to help handle Alerts
+    /// </summary>
     class AlertHandler
     {
-
+        /// <summary>
+        /// Method to handle all popups that appear</summary>
+        /// <param name="driver">Webdriver</param>
+        /// <param name="timeout">Number of seconds to wait</param> 
+        /// <returns>true if a popup was handled successfully, false if no popup was present to handle</returns>
         public static Boolean handleAllAlerts(IWebDriver driver, double timeout)
         {
             Boolean foundAlert = false;
@@ -21,28 +28,31 @@ namespace Toolkit.Utils
             return foundAlert;
         }
 
+        /// <summary>
+        /// Method to handle a single popup</summary>
+        /// <param name="driver">Webdriver</param>
+        /// <param name="timeout">Number of seconds to wait</param> 
+        /// <returns>true if a popup was handled successfully, false if no popup was present to handle</returns>
         public static Boolean handleAlert(IWebDriver driver, double timeout)
         {
+            Boolean found = false;
             try
             {
-                if (isAlertPresent(driver, timeout)) {
-                  
-                    IAlert alert = driver.SwitchTo().Alert();
-                    alert.Accept();
-                    try
-                    {
-                        driver.SwitchTo().DefaultContent();
-                    }
-                    catch (UnhandledAlertException uhae) { }
-
+                if (isAlertPresent(driver, timeout)) {                 
+                    driver.SwitchTo().Alert().Accept();
+                    found = true;
                 }
             }
-            catch (NoAlertPresentException nape) {
-                return false;
-            }
+            catch (NoAlertPresentException nape) { }
 
-            return true;
+            return found;
         }
+
+        /// <summary>
+        /// Method see if any popups are present</summary>
+        /// <param name="driver">Webdriver</param>
+        /// <param name="timeout">Number of seconds to wait</param> 
+        /// <returns>true if popup was present, false if no popup was found</returns>
 
         public static Boolean isAlertPresent(IWebDriver driver, double timeout)
         {
