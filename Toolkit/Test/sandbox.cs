@@ -3,11 +3,13 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
+using Toolkit.Utils;
 
 namespace Toolkit
 {
     [TestClass]
-    public class FirstTest
+    public class Sandbox
+
     {
         FirefoxDriver _driver;
         [TestMethod]
@@ -20,8 +22,8 @@ namespace Toolkit
             _driver.FindElement(By.XPath("//input[@value='Login']")).Click();
 
             var wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(10));
-            IWebElement logout = wait.Until(d => d.FindElement(By.XPath("//a[text()='Logout']")));
-            Assert.IsTrue(logout.Displayed);
+            AlertHandler.handleAlert(_driver,3);
+            Assert.IsTrue(wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//a[text()='Logout']"))).Displayed);
         }
 
         [TestCleanup]
