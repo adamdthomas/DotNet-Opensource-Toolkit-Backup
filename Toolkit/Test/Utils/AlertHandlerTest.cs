@@ -3,9 +3,9 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
-using Toolkit.Utils;
+using Orasi.Toolkit.Utils;
 
-namespace Toolkit
+namespace Orasi.Toolkit
 {
     [TestClass]
     public class AlertHandlerTest

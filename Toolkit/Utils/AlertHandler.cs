@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 
-namespace Toolkit.Utils
+namespace Orasi.Toolkit.Utils
 {
     /// <summary>
     /// Class to help handle Alerts
