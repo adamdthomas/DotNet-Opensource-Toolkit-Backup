@@ -11,15 +11,15 @@ namespace Orasi.Toolkit.Test.Utils
     class Base64EncoderTest
     {
         [Test]
-        public void encode()
+        public void Encode()
         {
-             Assert.True(Base64Encoder.encode("String to encode").Equals("U3RyaW5nIHRvIGVuY29kZQ=="));
+             Assert.True(Base64Encoder.Encode("String to encode").Equals("U3RyaW5nIHRvIGVuY29kZQ=="));
         }
 
         [Test]
-        public void decode()
+        public void Decode()
         {
-            Assert.True(Base64Encoder.decode("U3RyaW5nIHRvIGVuY29kZQ==").Equals("String to encode"));
+            Assert.True(Base64Encoder.Decode("U3RyaW5nIHRvIGVuY29kZQ==").Equals("String to encode"));
         }
     }
 }

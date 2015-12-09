@@ -18,11 +18,11 @@ namespace Orasi.Toolkit.Utils
         /// <param name="driver">Webdriver</param>
         /// <param name="timeout">Number of seconds to wait</param> 
         /// <returns>true if a popup was handled successfully, false if no popup was present to handle</returns>
-        public static Boolean handleAllAlerts(IWebDriver driver, double timeout)
+        public static Boolean HandleAllAlerts(IWebDriver driver, double timeout)
         {
             Boolean foundAlert = false;
-            while (isAlertPresent(driver,timeout)) {
-                handleAlert(driver, timeout);
+            while (IsAlertPresent(driver,timeout)) {
+                HandleAlert(driver, timeout);
                 foundAlert = true;
             }
             return foundAlert;
@@ -33,12 +33,12 @@ namespace Orasi.Toolkit.Utils
         /// <param name="driver">Webdriver</param>
         /// <param name="timeout">Number of seconds to wait</param> 
         /// <returns>true if a popup was handled successfully, false if no popup was present to handle</returns>
-        public static Boolean handleAlert(IWebDriver driver, double timeout)
+        public static Boolean HandleAlert(IWebDriver driver, double timeout)
         {
             Boolean found = false;
             try
             {
-                if (isAlertPresent(driver, timeout)) {                 
+                if (IsAlertPresent(driver, timeout)) {                 
                     driver.SwitchTo().Alert().Accept();
                     found = true;
                 }
@@ -54,7 +54,7 @@ namespace Orasi.Toolkit.Utils
         /// <param name="timeout">Number of seconds to wait</param> 
         /// <returns>true if popup was present, false if no popup was found</returns>
 
-        public static Boolean isAlertPresent(IWebDriver driver, double timeout)
+        public static Boolean IsAlertPresent(IWebDriver driver, double timeout)
         {
             try
             {

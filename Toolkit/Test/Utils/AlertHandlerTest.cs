@@ -15,28 +15,28 @@ namespace Orasi.Toolkit.Test.Utils
 
 
         [SetUp]
-        public void startup()
+        public void Startup()
         {
             _driver = new FirefoxDriver();
             _driver.Navigate().GoToUrl("http://orasi.github.io/Selenium-Java-Core/sites/unitTests/orasi/utils/alertHandler.html");
         }
 
         [Test]
-        public void isAlertPresent()
+        public void IsAlertPresent()
         {
-            Assert.True(AlertHandler.isAlertPresent(_driver, 3));
+            Assert.True(AlertHandler.IsAlertPresent(_driver, 3));
         }
 
         [Test]
-        public void handleAlertTest()
+        public void HandleAlertTest()
         {
-            Assert.IsTrue(AlertHandler.handleAlert(_driver,3));
+            Assert.IsTrue(AlertHandler.HandleAlert(_driver,3));
         }
 
         [Test]
-        public void handleAllAlertTest()
+        public void HandleAllAlertTest()
         {
-            Assert.IsTrue(AlertHandler.handleAllAlerts(_driver, 2));
+            Assert.IsTrue(AlertHandler.HandleAllAlerts(_driver, 2));
             Assert.IsTrue(_driver.FindElement(By.Id("button")).Enabled);
         }
 
