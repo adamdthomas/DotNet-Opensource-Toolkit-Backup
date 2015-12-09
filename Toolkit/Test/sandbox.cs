@@ -3,6 +3,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
 using NUnit.Framework;
+using Orasi.Toolkit.Utils;
 
 namespace Orasi.Toolkit
 {
@@ -11,7 +12,7 @@ namespace Orasi.Toolkit
 
     {
         FirefoxDriver _driver;
-        [Test]
+        // [Test]
         public void SampleLoginTest()
         {
             _driver = new FirefoxDriver();
@@ -24,10 +25,16 @@ namespace Orasi.Toolkit
             Assert.IsTrue(wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//a[text()='Logout']"))).Displayed);
         }
 
-        [TearDown]
+        // [TearDown]
         public void TearDown()
         {
             _driver.Quit();
+        }
+
+        [Test]
+        public void sleeper()
+        {
+            Sleeper.sleep(3000);
         }
     }
 }
