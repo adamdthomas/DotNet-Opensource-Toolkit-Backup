@@ -1,17 +1,17 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
+using NUnit.Framework;
 
 namespace Orasi.Toolkit
 {
-    [TestClass]
+    [TestFixture]
     public class Sandbox
 
     {
         FirefoxDriver _driver;
-        [TestMethod]
+        [Test]
         public void SampleLoginTest()
         {
             _driver = new FirefoxDriver();
@@ -24,7 +24,7 @@ namespace Orasi.Toolkit
             Assert.IsTrue(wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//a[text()='Logout']"))).Displayed);
         }
 
-        [TestCleanup]
+        [TearDown]
         public void TearDown()
         {
             _driver.Quit();
