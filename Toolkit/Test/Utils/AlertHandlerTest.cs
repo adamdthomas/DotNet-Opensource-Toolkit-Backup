@@ -6,7 +6,7 @@ using OpenQA.Selenium.Support.UI;
 using NUnit.Framework;
 using Orasi.Toolkit.Utils;
 
-namespace Orasi.Toolkit
+namespace Orasi.Toolkit.Test.Utils
 {
     [TestFixture]
     public class AlertHandlerTest
