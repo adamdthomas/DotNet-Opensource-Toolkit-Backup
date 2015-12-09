@@ -115,6 +115,8 @@
     <Compile Include="Test\Utils\Base64EncoderTest.cs" />
     <Compile Include="Utils\AlertHandler.cs" />
     <Compile Include="Utils\Base64Encoder.cs" />
+    <Compile Include="Utils\Constants.cs" />
+    <Compile Include="Utils\FrameHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
