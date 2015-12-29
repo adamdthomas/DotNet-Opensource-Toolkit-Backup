@@ -5,7 +5,7 @@ using OpenQA.Selenium.Support.UI;
 namespace Orasi.Toolkit.Utils
 {
     /// <summary>
-    /// Class to help handle Alerts
+    /// Class to help handle Alerts 
     /// </summary>
     class AlertHandler
     {
