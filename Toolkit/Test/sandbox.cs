@@ -1,32 +1,18 @@
-﻿using NUnit.Framework;
+﻿using System;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
-//using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
+using NUnit.Framework;
 using Orasi.Toolkit.Utils;
-using System;
-//using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Orasi.Toolkit
 {
-    [TestFixture]
-    //[TestClass]
+    //[TestFixture]
     public class Sandbox
+
     {
-        //FirefoxDriver _driver;
-        IWebDriver _driver;
-
-        //[TestInitialize]
-        //[TestFixtureSetUp]
-        /*public void TestSetup()
-        {
-            _driver = new FirefoxDriver();
-            _driver.Navigate().GoToUrl("http://bluesourcestaging.heroku.com");
-        }*/
-
+        FirefoxDriver _driver;
         [Test]
-        //[TestCase()]
-        //[TestMethod]
         public void SampleLoginTest()
         {
             _driver = new FirefoxDriver();
@@ -40,7 +26,6 @@ namespace Orasi.Toolkit
         }
 
         [TearDown]
-        //[TestCleanup]
         public void TearDown()
         {
             _driver.Quit();
@@ -51,7 +36,5 @@ namespace Orasi.Toolkit
         {
             Sleeper.sleep(3000);
         }
-
-        
     }
 }
