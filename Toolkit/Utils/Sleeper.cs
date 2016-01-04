@@ -9,7 +9,7 @@ namespace Orasi.Toolkit.Utils
         private static Stopwatch stopwatch = new Stopwatch();
 
         /// <summary>
-        /// Use a thread safe sleep method using teh Stopwatch class</summary>
+        /// Use a thread safe sleep method using the Stopwatch class</summary>
         /// <param name="millis">Number of milliseconds to pause. 3000 will cause a wait for 3 seconds</param>
         public static void sleep(long millis)
         {
