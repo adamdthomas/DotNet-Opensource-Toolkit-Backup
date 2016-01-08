@@ -75,7 +75,15 @@ namespace Orasi.Toolkit.Utils //Read___write_XLS_via_NPOI___display_in_GRID
 
                     if (sh.DisplayRowColHeadings) 
                     {
-                        myDataset.Add(new DataSet() { ColName = sh.GetRow(0).GetCell(c).StringCellValue, ColValues = ColValue, Row = (sh.GetRow(r).RowNum), Column = cell.ColumnIndex });
+                        if (r != 0)
+                        {
+                            myDataset.Add(new DataSet() { ColName = sh.GetRow(0).GetCell(c).StringCellValue, ColValues = ColValue, Row = (sh.GetRow(r).RowNum), Column = cell.ColumnIndex });
+                        }
+                        else
+                        {
+                            myDataset.Add(new DataSet() { ColName = sh.GetRow(0).GetCell(c).StringCellValue, ColValues = null, Row = (sh.GetRow(r).RowNum), Column = cell.ColumnIndex });
+                        }
+                        
                     }
                     else
                     {
@@ -86,6 +94,7 @@ namespace Orasi.Toolkit.Utils //Read___write_XLS_via_NPOI___display_in_GRID
 
             var panther = from dataset in myDataset
                           select dataset;
+
             foreach (var dataset in panther)
                 Console.WriteLine("{0} - {1} - {2}", dataset.ColName, dataset.ColValues, dataset.Row, dataset.Column);
                 Console.ReadLine();
