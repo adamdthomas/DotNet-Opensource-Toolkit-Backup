@@ -19,10 +19,10 @@ namespace Orasi.Toolkit.Utils //Read___write_XLS_via_NPOI___display_in_GRID
    
     class ExcelDocumentReader
     {
-        private HSSFSheet sh;
+        //private HSSFSheet sh;
         private HSSFWorkbook wb;
-        private HSSFCell cell;
-        private string filePath;       
+        //private HSSFCell cell;
+        //private string filePath;       
 
         List<DataSet> myDataset = new List<DataSet>();
 
@@ -33,13 +33,13 @@ namespace Orasi.Toolkit.Utils //Read___write_XLS_via_NPOI___display_in_GRID
         /// <returns>Collection, eventually</returns>
         public object ReadData(string filePath, string sheetName)
         {
-            var fs = new FileStream("C:\\Users\\Paul\\Documents\\test.xls", FileMode.Open, FileAccess.Read);
+            var fs = new FileStream(filePath, FileMode.Open, FileAccess.Read);
 
             wb = new HSSFWorkbook(fs);
 
-            string sheetname = wb.GetSheetName(0);
+            //string sheetname = wb.GetSheetName(0);
            
-            var sh = wb.GetSheet(sheetName);
+            var sh = (wb.GetSheet(sheetName));
             
             // loop for rows
             for (int r = 0; r < sh.LastRowNum; r++)
@@ -92,13 +92,15 @@ namespace Orasi.Toolkit.Utils //Read___write_XLS_via_NPOI___display_in_GRID
                 }
             }
 
-            var panther = from dataset in myDataset
-                          select dataset;
+            return myDataset;
 
-            foreach (var dataset in panther)
-                Console.WriteLine("{0} - {1} - {2}", dataset.ColName, dataset.ColValues, dataset.Row, dataset.Column);
-                Console.ReadLine();
-                return myDataset;
+            //var panther = from dataset in myDataset
+            //              select dataset;
+
+            //foreach (var dataset in panther)
+            //    Console.WriteLine("{0} - {1} - {2}", dataset.ColName, dataset.ColValues, dataset.Row, dataset.Column);
+            //    Console.ReadLine();
+            //    return myDataset;
             }
     }
 
