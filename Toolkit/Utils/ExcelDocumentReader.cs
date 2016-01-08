@@ -33,56 +33,63 @@ namespace Orasi.Toolkit.Utils //Read___write_XLS_via_NPOI___display_in_GRID
         /// <returns>Collection, eventually</returns>
         public object ReadData(string filePath, string sheetName)
         {
-            //   try
-            //   {
-            //       var fs = new FileStream("C:\\Users\\Paul\\Documents\\test.xls", FileMode.Open, FileAccess.Read);
-            //   }
-            //   catch ( e)
-            //   {
-            //       Console.WriteLine(e.StackTrace);
-            //   }
-            //   catch (IOException e)
-            //   {
-            //       Console.WriteLine(e.StackTrace);
+            var fs = new FileStream("C:\\Users\\Paul\\Documents\\test.xls", FileMode.Open, FileAccess.Read);
 
-            //}
-            var fs = new FileStream("C:\\Users\\Paul\\Documents\\test.xls", FileMode.Open);
-
-            // Getting all the data from a given sheet
-            //int startRow;
-            //int headingRow;
-
-            //// Determines if headings are being used
-            //if (wb.GetSheet(sheetName).DisplayRowColHeadings)
-            //{
-            //    headingRow = 1;
-            //    startRow = 2;
-            //}
-            //else
-            //{                    
-            //    startRow = 1;
-            //}
             wb = new HSSFWorkbook(fs);
-                // get sheet
-                sh = (HSSFSheet)wb.GetSheet(sheetName);
 
-                for (int i = 0; i < sh.LastRowNum; i++)
+            string sheetname = wb.GetSheetName(0);
+           
+            var sh = wb.GetSheet(sheetName);
+            
+            // loop for rows
+            for (int r = 0; r < sh.LastRowNum; r++)
+            {
+                
+                // loop for columns
+                for (int c = 0; c < sh.GetRow(r).LastCellNum; c++)
                 {
-                    for (int n = 0; n < sh.GetRow(i).LastCellNum; n++)
+                    var cell = sh.GetRow(r).GetCell(c);
+                    string ColValue = "";
+
+                    switch (cell.CellType)
                     {
-                        myDataset.Add(new DataSet() { ColName = (sh.GetRow(0).GetCell(n).StringCellValue), ColValues = (sh.GetRow(i + 1).GetCell(n).StringCellValue), Row = (sh.GetRow(i).RowNum) });
-
-                        var panther = from dataset in myDataset
-                                    select dataset;
-
-                        foreach (var dataset in panther)
-                            Console.WriteLine("{0} - {1} - {2}", dataset.ColName, dataset.ColValues, dataset.Row);
-                        Console.ReadLine();
+                        case NPOI.SS.UserModel.CellType.Unknown:
+                            break;
+                        case NPOI.SS.UserModel.CellType.Numeric:
+                            ColValue = (cell.NumericCellValue.ToString());   
+                            break;
+                        case NPOI.SS.UserModel.CellType.String:
+                            ColValue = (cell.StringCellValue);
+                            break;
+                        case NPOI.SS.UserModel.CellType.Formula:
+                            break;
+                        case NPOI.SS.UserModel.CellType.Blank:
+                            break;
+                        case NPOI.SS.UserModel.CellType.Boolean:
+                            break;
+                        case NPOI.SS.UserModel.CellType.Error:
+                            break;
+                        default:
+                            break;
                     }
-                    
+
+                    if (sh.DisplayRowColHeadings) 
+                    {
+                        myDataset.Add(new DataSet() { ColName = sh.GetRow(0).GetCell(c).StringCellValue, ColValues = ColValue, Row = (sh.GetRow(r).RowNum), Column = cell.ColumnIndex });
+                    }
+                    else
+                    {
+                        myDataset.Add(new DataSet() { ColName = null, ColValues = ColValue, Row = (sh.GetRow(r).RowNum) });
+                    }
                 }
+            }
+
+            var panther = from dataset in myDataset
+                          select dataset;
+            foreach (var dataset in panther)
+                Console.WriteLine("{0} - {1} - {2}", dataset.ColName, dataset.ColValues, dataset.Row, dataset.Column);
+                Console.ReadLine();
                 return myDataset;
-             
             }
     }
 
@@ -230,5 +237,6 @@ namespace Orasi.Toolkit.Utils //Read___write_XLS_via_NPOI___display_in_GRID
             public string ColName { get; set; }
             public string ColValues { get; set; }
             public int Row { get; set; }
+            public int Column { get; set; }
         }
     }

@@ -44,7 +44,7 @@ namespace Orasi.Toolkit
         {
             var edr = new ExcelDocumentReader();
 
-            edr.ReadData("C:\\Users\\Paul\\Documents\\test.xls", "panthers");
+            edr.ReadData("C:\\Users\\Paul\\Documents\\test.xls", "panther");
         }
     }
 }
