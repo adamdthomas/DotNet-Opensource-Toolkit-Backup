@@ -18,7 +18,7 @@ namespace Orasi.Toolkit.Test.Utils
     class ExcelDocumentReaderTest
     {
         [Test]
-        public void readDataFilePathConstructorAllRows()
+        public void readDataFilePathAllRows()
         {
             /* Java Base for tests
             Object[][] data = null;
@@ -39,9 +39,12 @@ namespace Orasi.Toolkit.Test.Utils
             List<Dataset> myDataset = new List<Dataset>();
 
             myDataset = edr.GetAllCells(filePath, sheetName);
-            
-            string cap = myDataset[7].ColValues.ToString();
 
+            Assert.NotNull(myDataset);
+            Assert.True(myDataset.Count == 9);
+            Assert.True(myDataset[3].ColValues.Equals("Cam"));
+            Assert.True(myDataset[8].ColName.Equals("position"));
+            Assert.True(myDataset[0].Column == 0);
         }
 
     }
