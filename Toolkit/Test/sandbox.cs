@@ -4,7 +4,6 @@ using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
 using NUnit.Framework;
 using Orasi.Toolkit.Utils;
-//using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Orasi.Toolkit
 {
@@ -15,8 +14,6 @@ namespace Orasi.Toolkit
         [Test]
         public void SampleLoginTest()
         {
-            exceldocumentreader();
-            
             _driver = new FirefoxDriver();
             _driver.Navigate().GoToUrl("http://bluesourcestaging.heroku.com");
             _driver.FindElement(By.Id("employee_username")).SendKeys("company.admin");
@@ -40,11 +37,11 @@ namespace Orasi.Toolkit
             Sleeper.sleep(3000);
         }
 
-        public void exceldocumentreader()
-        {
-            var edr = new ExcelDocumentReader();
+        //public void exceldocumentreader()
+        //{
+        //    var edr = new Excel();
 
-            edr.ReadData("C:\\Users\\Paul\\Documents\\test.xls", "panther");
-        }
+        //    edr.ReadData(@"C:\Users\Paul\Documents\test.xls", "panther");
+        //}
     }
 }

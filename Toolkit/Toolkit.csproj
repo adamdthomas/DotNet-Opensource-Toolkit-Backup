@@ -133,6 +133,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Test\sandbox.cs" />
+    <Compile Include="Test\Utils\ExcelDocumentReaderTest.cs" />
     <Compile Include="Test\Utils\FrameHandlerTest.cs" />
     <Compile Include="Test\Utils\AlertHandlerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -147,6 +148,9 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+    <Resource Include="test.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
