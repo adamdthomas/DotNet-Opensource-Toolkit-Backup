@@ -10,8 +10,8 @@ namespace Orasi.Toolkit.Test.Utils
     {
         FirefoxDriver _driver;
 
-
-        [TestFixtureSetUp]
+        [OneTimeSetUp]
+        //[TestFixtureSetUp] - obsolete
         public void Startup()
         {
             _driver = new FirefoxDriver();
@@ -62,7 +62,8 @@ namespace Orasi.Toolkit.Test.Utils
             Assert.True(FrameHandler.GetCurrentFrameName(_driver).Equals("main_frame2"), "Frame name was not 'main_frame2' ");
         }
 
-        [TestFixtureTearDown]
+        [OneTimeTearDown]
+        //[TestFixtureTearDown] - obsolete
         public void TearDown()
         {
             _driver.Quit();

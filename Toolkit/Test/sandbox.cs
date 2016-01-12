@@ -7,10 +7,9 @@ using Orasi.Toolkit.Utils;
 
 namespace Orasi.Toolkit
 {
-    //[TestFixture]
+    [TestFixture]
     public class Sandbox
-
-    {
+        {
         FirefoxDriver _driver;
         [Test]
         public void SampleLoginTest()
@@ -19,13 +18,14 @@ namespace Orasi.Toolkit
             _driver.Navigate().GoToUrl("http://bluesourcestaging.heroku.com");
             _driver.FindElement(By.Id("employee_username")).SendKeys("company.admin");
             _driver.FindElement(By.Id("employee_password")).SendKeys("blah");
-            _driver.FindElement(By.XPath("//input[@value='Login']")).Click();
+            _driver.FindElement(By.XPath("//input[@value='Login']")).Submit();
 
             var wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(10));
             Assert.IsTrue(wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//a[text()='Logout']"))).Displayed);
         }
 
         [TearDown]
+        //[OneTimeTearDown]
         public void TearDown()
         {
             _driver.Quit();
@@ -36,5 +36,12 @@ namespace Orasi.Toolkit
         {
             Sleeper.sleep(3000);
         }
+
+        //public void exceldocumentreader()
+        //{
+        //    var edr = new Excel();
+
+        //    edr.ReadData(@"C:\Users\Paul\Documents\test.xls", "panther");
+        //}
     }
 }
