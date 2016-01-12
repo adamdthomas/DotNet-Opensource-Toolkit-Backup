@@ -5,6 +5,9 @@ using NPOI.SS.UserModel;
 
 namespace Orasi.Toolkit.Utils
 {
+    /// <summary>
+    /// Class to help handle data from Excel files. 
+    /// </summary>
     class ExcelDocumentReader
     {
         private string filePath;
@@ -13,6 +16,10 @@ namespace Orasi.Toolkit.Utils
         private FileStream fs;
         private ISheet iSh;
 
+        /// <summary>
+        /// Method to return ISheet object based on first sheet given a filepath.</summary>
+        /// <param name="string">filePath</param>
+        /// <returns>ISheet object "iSh" containing sheet at index 0 of workbook</returns>
         public ISheet Excel(string filePath)
         {
             this.filePath = filePath;
@@ -24,29 +31,40 @@ namespace Orasi.Toolkit.Utils
             return iSh;
         }
 
-        public List<Dataset> Excel(string filePath, string sheetName)
-        {
-            //Opens a workbook while opening a specific sheet within a workbook
-            this.filePath = filePath;
-            this.sheetName = sheetName;
-            List<Dataset> myDataset = new List<Dataset>();
+        /// <summary>
+        /// Method to return List containing all cells on filepath and sheetname.</summary>
+        /// <param name="string">filePath</param>
+        /// <param name="string">sheetName</param>
+        /// <returns>@List<Dataset> object where each element of the List contains info regarding one cell.</returns>
+        //public List<Dataset> Excel(string filePath, string sheetName)
+        //{
+        //    //Opens a workbook while opening a specific sheet within a workbook
+        //    this.filePath = filePath;
+        //    this.sheetName = sheetName;
+        //    List<Dataset> myDataset = new List<Dataset>();
 
-            GetWorkBook(filePath);
-            GetSheet(sheetName);
+        //    myDataset = GetAllCells(filePath, sheetName);
 
-            myDataset = GetAllCells(filePath, sheetName);
+        //    return myDataset;
+        //}
 
-            return myDataset;
-        }
-
+        /// <summary>
+        /// Method to return ISheet object based on sheet name and file path provided.</summary>
+        /// <param name="string">filePath</param>
+        /// <param name="string">sheetName</param>
+        /// <returns>ISheet object containing sheet specified by sheet name and file path.</returns>
         private ISheet GetSheet(string SheetName)
         {
-            wb = GetWorkBook(filePath);
+            
             iSh = wb.GetSheet(SheetName);
 
             return iSh;
         }
 
+        /// <summary>
+        /// Method to return HSSFWorkbook object based on file path provided.</summary>
+        /// <param name="string">filePath</param>
+        /// <returns>HSSFWorkbook object containing workbook specified by file path.</returns>
         private HSSFWorkbook GetWorkBook(string filePath)
         {
             this.filePath = filePath;
@@ -66,6 +84,11 @@ namespace Orasi.Toolkit.Utils
             return wb;
         }
 
+        /// <summary>
+        /// Method to return ICell object based on row/column combination.</summary>
+        /// <param name="int">cellRow</param>
+        /// <param name="int">cellColumn</param>
+        /// <returns>ICell object containing cell specified by row and column.</returns>
         private ICell GetCell(int cellRow, int cellColumn)
         {
             ICell iCell = null;
@@ -79,14 +102,19 @@ namespace Orasi.Toolkit.Utils
             return iCell;
         }
 
+        /// <summary>
+        /// Method to return List containing all cells on filepath and sheetname.</summary>
+        /// <param name="string">filePath</param>
+        /// <param name="string">sheetName</param>
+        /// <returns>@List<Dataset> object where each element of the List contains info regarding one cell.</returns>
         public List<Dataset> GetAllCells(string filePath, string sheetName)
         {
             this.filePath = filePath;
             this.sheetName = sheetName;
+            List<Dataset> myDataset = new List<Dataset>();
 
             GetWorkBook(filePath);
             GetSheet(sheetName);
-            List<Dataset> myDataset = new List<Dataset>();
             
             // loop for rows
             for (int r = 0; r < iSh.LastRowNum + 1; r++)
@@ -142,7 +170,8 @@ namespace Orasi.Toolkit.Utils
             return myDataset;
         }
     }
-
+    /// <summary>
+    /// Class to define Dataset as List Type</summary>
     class Dataset
     {
         public string ColName { get; set; }
