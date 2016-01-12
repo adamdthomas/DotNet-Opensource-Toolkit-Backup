@@ -4,7 +4,7 @@
 Orasi is a software and professional services company focused on software quality testing and management.  As an organization, we are dedicated to best-in-class QA tools, practices and processes. We are agile and drive continuous improvement with our customers and within our own business.
 
 # License
-Licensed under [BSD License](https://github.com/Orasi/Ruby-Opensource-Toolkit/blob/master/License)
+Licensed under [BSD License](https://github.com/Orasi/DotNet-Opensource-Toolkit/blob/master/LICENSE)
 
 ## Setup
 * Install [Visual Studio 2015](https://www.visualstudio.com/downloads/download-visual-studio-vs)
