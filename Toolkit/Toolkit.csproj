@@ -132,6 +132,11 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Test\sandbox.cs" />
     <Compile Include="Test\Utils\ExcelDocumentReaderTest.cs" />
     <Compile Include="Test\Utils\FrameHandlerTest.cs" />
@@ -144,6 +149,7 @@
     <Compile Include="Utils\ExcelDocumentReader.cs" />
     <Compile Include="Utils\FrameHandler.cs" />
     <Compile Include="Utils\Sleeper.cs" />
+    <Compile Include="Utils\TestEnvironment.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -189,6 +195,12 @@
       <Link>chromedriver.exe</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
