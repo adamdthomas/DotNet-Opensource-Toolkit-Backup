@@ -4,6 +4,10 @@
   /// </summary>
     public static class Constants
     {
+        internal static string SAUCELABS_USERNAME;
+        internal static string SAUCELABS_KEY;
+        internal static string DRIVERS_PATH_LOCAL;
+
         /// <summary>
         /// Default Selenium implicit wait time in seconds</summary>
         public static int DEFAULT_GLOBAL_DRIVER_TIMEOUT { get { return 30; } }
@@ -19,6 +23,13 @@
         /// <summary>
         /// Location of the environment URLs properties file</summary> 
         public static string ENVIRONMENT_URL_PATH { get { return "EnvironmentURLs"; } }
+        
+        /// <summary>
+        /// Selenium Hub Field </summary>
+        public static string SELENIUM_HUB_URL { get { return "http://10.238.242.50:4444/wd/hub"; } }
+
+
+
 
     }
 }
