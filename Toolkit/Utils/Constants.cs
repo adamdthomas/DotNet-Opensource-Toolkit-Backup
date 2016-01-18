@@ -7,6 +7,8 @@
         internal static string SAUCELABS_USERNAME;
         internal static string SAUCELABS_KEY;
         internal static string DRIVERS_PATH_LOCAL;
+        internal static object PAGE_TIMEOUT;
+        internal static object ELEMENT_TIMEOUT;
 
         /// <summary>
         /// Default Selenium implicit wait time in seconds</summary>

@@ -29,6 +29,8 @@ using System.Threading;
 using System.Resources;
 using SaucelabsApiDotNet;
 using System.IO;
+using NPOI.Util;
+using System.Diagnostics;
 
 namespace Orasi.Toolkit.Utils
 {
@@ -43,7 +45,7 @@ namespace Orasi.Toolkit.Utils
         private string operatingSystem;
 
         private string runLocation;
-        private string environment;
+        private string testEnvironment;
         private string testName;
         private string pageUrl;
 
@@ -114,6 +116,7 @@ namespace Orasi.Toolkit.Utils
         {
             get
             {
+                browserUnderTest = browserUnderTest.ToUpper().Replace(" ","");
                 return browserUnderTest;
             }
             set
@@ -158,15 +161,15 @@ namespace Orasi.Toolkit.Utils
             }
         }
 
-        public string Environment
+        public string TestingEnvironment
         {
             get
             {
-                return environment;
+                return testEnvironment;
             }
             set
             {
-                environment = value;
+                testEnvironment = value;
             }
         }
 
@@ -288,13 +291,13 @@ namespace Orasi.Toolkit.Utils
 
         private void launchApplication()
         {
-            if (Environment == null)
+            if (TestingEnvironment == null)
             {
                 launchApplication((Application.ToString().ToUpper()));
             }
             else
             {
-                launchApplication(Application.ToString().ToUpper() + "_" + Environment.ToString().ToUpper());
+                launchApplication(Application.ToString().ToUpper() + "_" + TestingEnvironment.ToString().ToUpper());
             }
         }
 
@@ -317,66 +320,45 @@ namespace Orasi.Toolkit.Utils
             {
                 //File file = null;
 
-                switch (OperatingSystem.ToUpper().Trim().Replace(" ","")
+                switch (OperatingSystem.ToUpper().Trim().Replace(" ", ""))
                 {
                     case "WINDOWS":
-                        if (getBrowserUnderTest().equalsIgnoreCase("Firefox") || getBrowserUnderTest().equalsIgnoreCase("FF"))
+                        if (BrowserUnderTest.Equals("FIREFOX") || BrowserUnderTest.Equals("FF"))
                         {
-                            caps = DesiredCapabilities.firefox();
+                            caps = DesiredCapabilities.Firefox();
                         }
 
                         // Internet explorer
-                        else if (BrowserUnderTest.ToUpper().Equals("IE")
-                              || BrowserUnderTest.Replace(" ","").ToUpper().Equals("INTERNETEXPLORER"))
+                        else if (BrowserUnderTest.Equals("IE") || BrowserUnderTest.Equals("INTERNETEXPLORER"))
                         {
-                            caps = DesiredCapabilities.internetExplorer();
-                            caps.setCapability("ignoreZoomSetting", true);
-                            caps.setCapability("enablePersistentHover", false);
-                            File file = new File(
-                                    this.getClass().getResource(Constants.DRIVERS_PATH_LOCAL + "IEDriverServer.exe").getPath());
-                            System.setProperty("webdriver.ie.driver", file.getAbsolutePath());
                             caps = DesiredCapabilities.InternetExplorer();
+                            caps.SetCapability("ignoreZoomSetting", true);
+                            caps.SetCapability("enablePersistentHover", false);
+
+                            Environment.SetEnvironmentVariable("webdriver.ie.driver", Constants.DRIVERS_PATH_LOCAL + "IEDriverServer.exe");
 
                         }
                         // Chrome
-                        else if (getBrowserUnderTest().equalsIgnoreCase("Chrome"))
+                        else if (BrowserUnderTest.Equals("CHROME"))
                         {
-                            file = new File(
-                                    this.getClass().getResource(Constants.DRIVERS_PATH_LOCAL + "ChromeDriver.exe").getPath());
-                            System.setProperty("webdriver.chrome.driver", file.getAbsolutePath());
-                            caps = DesiredCapabilities.chrome();
+                            Environment.SetEnvironmentVariable("webdriver.chrome.driver", Constants.DRIVERS_PATH_LOCAL + "ChromeDriver.exe");
+                            caps = DesiredCapabilities.Chrome();
 
                         }
                         // Headless - HTML unit driver
-                        else if (getBrowserUnderTest().equalsIgnoreCase("html"))
+                        else if (BrowserUnderTest.Equals("HTML"))
                         {
-                            caps = DesiredCapabilities.htmlUnitWithJs();
+                            caps = DesiredCapabilities.HtmlUnitWithJavaScript();
                         }
-                        /*
-                         * else if (getBrowserUnderTest().equalsIgnoreCase("phantom")) {
-                         * caps = DesiredCapabilities.phantomjs();
-                         * caps.setCapability("ignoreZoomSetting", true);
-                         * caps.setCapability("enablePersistentHover", false); file =
-                         * new File(this.getClass().getResource(Constants.
-                         * DRIVERS_PATH_LOCAL+ "phantomjs.exe").getPath());
-                         * caps.setCapability(PhantomJSDriverService.
-                         * PHANTOMJS_EXECUTABLE_PATH_PROPERTY , file.getAbsolutePath());
-                         * driver = new PhantomJSDriver(caps);
-                         * 
-                         * }
-                         */
                         // Safari
-                        else if (getBrowserUnderTest().equalsIgnoreCase("safari"))
+                        else if (BrowserUnderTest.Equals("SAFARI"))
                         {
-                            caps = DesiredCapabilities.safari();
-
+                            caps = DesiredCapabilities.Safari();
                         }
-                        else if (getBrowserUnderTest().equalsIgnoreCase("microsoftedge"))
+                        else if (BrowserUnderTest.Equals("MICROSOFTEDGE"))
                         {
-                            file = new File(this.getClass().getResource(Constants.DRIVERS_PATH_LOCAL + "MicrosoftWebDriver.exe")
-                                    .getPath());
-                            System.setProperty("webdriver.edge.driver", file.getAbsolutePath());
-                            caps = DesiredCapabilities.edge();
+                            Environment.SetEnvironmentVariable("webdriver.edge.driver", Constants.DRIVERS_PATH_LOCAL + "MicrosoftWebDriver.exe");
+                            caps = DesiredCapabilities.Edge();
                         }
                         else
                         {
@@ -385,58 +367,56 @@ namespace Orasi.Toolkit.Utils
                         break;
                     case "mac":
                     case "macos":
-                        if (getBrowserUnderTest().equalsIgnoreCase("Firefox") || getBrowserUnderTest().equalsIgnoreCase("FF"))
+                        if (BrowserUnderTest.Equals("FIREFOX") || BrowserUnderTest.Equals("FF"))
                         {
-                            caps = DesiredCapabilities.firefox();
+                            caps = DesiredCapabilities.Firefox();
 
                         }
                         // Internet explorer
-                        else if (getBrowserUnderTest().equalsIgnoreCase("IE")
-                                || getBrowserUnderTest().replace(" ", "").equalsIgnoreCase("internetexplorer"))
+                        else if (BrowserUnderTest.Equals("IE")
+                                || BrowserUnderTest.Equals("INTERNETEXPLORER"))
                         {
                             throw new RuntimeException("Currently there is no support for IE with Mac OS.");
                         }
                         // Chrome
-                        else if (getBrowserUnderTest().equalsIgnoreCase("Chrome"))
+                        else if (BrowserUnderTest.Equals("CHROME"))
                         {
-                            file = new File(
-                                    this.getClass().getResource(Constants.DRIVERS_PATH_LOCAL + "mac/chromedriver").getPath());
-                            System.setProperty("webdriver.chrome.driver", file.getAbsolutePath());
+                            Environment.SetEnvironmentVariable("webdriver.chrome.driver", Constants.DRIVERS_PATH_LOCAL + "mac/chromedriver");
                             try
                             {
                                 // Ensure the permission on the driver include
                                 // executable permissions
-                                Process proc = Runtime.getRuntime()
-                                        .exec(new String[] { "/bin/bash", "-c", "chmod 777 " + file.getAbsolutePath() });
-                                proc.waitFor();
-                                caps = DesiredCapabilities.chrome();
+                                Process proc = System.Runtime.
+                                        .exec(new string[] { "/bin/bash", "-c", "chmod 777 " + file.getAbsolutePath() });
+                                proc.WaitForExit();
+                                caps = DesiredCapabilities.Chrome();
 
                             }
-                            catch (IllegalStateException ise)
-                            {
-                                ise.printStackTrace();
-                                throw new IllegalStateException(
-                                        "This has been seen to occur when the chromedriver file does not have executable permissions. In a terminal, navigate to the directory to which Maven pulls the drivers at runtime (e.g \"/target/classes/drivers/\") and execute the following command: chmod +rx chromedriver");
-                            }
+                            //catch (IllegalStateException ise)
+                            //{
+                            //    ise.printStackTrace();
+                            //    throw new IllegalStateException(
+                            //            "This has been seen to occur when the chromedriver file does not have executable permissions. In a terminal, navigate to the directory to which Maven pulls the drivers at runtime (e.g \"/target/classes/drivers/\") and execute the following command: chmod +rx chromedriver");
+                            //}
                             catch (IOException ioe)
                             {
-                                ioe.printStackTrace();
+                                Console.WriteLine(ioe.StackTrace);
                             }
-                            catch (InterruptedException ie)
-                            {
-                                ie.printStackTrace();
-                            }
+                            //catch (InterruptedException ie)
+                            //{
+                            //    ie.printStackTrace();
+                            //}
                         }
                         // Headless - HTML unit driver
-                        else if (getBrowserUnderTest().equalsIgnoreCase("html"))
+                        else if (BrowserUnderTest.Equals("HTML"))
                         {
-                            caps = DesiredCapabilities.htmlUnitWithJs();
+                            caps = DesiredCapabilities.HtmlUnitWithJavaScript();
 
                         }
                         // Safari
-                        else if (getBrowserUnderTest().equalsIgnoreCase("safari"))
+                        else if (BrowserUnderTest.Equals("SAFARI"))
                         {
-                            caps = DesiredCapabilities.safari();
+                            caps = DesiredCapabilities.Safari();
                         }
                         else
                         {
@@ -444,40 +424,38 @@ namespace Orasi.Toolkit.Utils
                         }
                         break;
                     case "linux":
-                        if (getBrowserUnderTest().equalsIgnoreCase("html"))
+                        if (BrowserUnderTest.Equals("HTML"))
                         {
-                            caps = DesiredCapabilities.htmlUnitWithJs();
+                            caps = DesiredCapabilities.HtmlUnitWithJavaScript();
                         }
-                        else if (getBrowserUnderTest().equalsIgnoreCase("Firefox")
-                              || getBrowserUnderTest().equalsIgnoreCase("FF"))
+                        else if (BrowserUnderTest.Equals("FIREFOX") || BrowserUnderTest.Equals("FF"))
                         {
-                            caps = DesiredCapabilities.firefox();
+                            caps = DesiredCapabilities.Firefox();
                         }
                     default:
                         break;
                 }
 
-                setDriver(new OrasiDriver(caps));
+                setDriver(new RemoteWebDriver(caps));
                 // Code for running on the selenium grid
             }
-            else if (getRunLocation().equalsIgnoreCase("grid"))
+            else if (RunLocation.Equals("GRID"))
             {
-                caps.setCapability(CapabilityType.BROWSER_NAME, getBrowserUnderTest());
-                if (getBrowserVersion() != null)
+                caps.SetCapability(CapabilityType.BrowserName, BrowserUnderTest);
+                if (BrowserVersion != null)
                 {
-                    caps.setCapability(CapabilityType.VERSION, getBrowserVersion());
+                    caps.SetCapability(CapabilityType.Version, BrowserVersion);
                 }
 
-                caps.setCapability(CapabilityType.PLATFORM, getGridPlatformByOS(getOperatingSystem()));
-                if (getBrowserUnderTest().toLowerCase().contains("ie")
-                        || getBrowserUnderTest().toLowerCase().contains("iexplore"))
+                caps.SetCapability(CapabilityType.Platform, getGridPlatformByOS(OperatingSystem));
+                if (BrowserUnderTest.Equals("IE") || BrowserUnderTest.Equals("IEEXPLORE"))
                 {
-                    caps.setCapability("ignoreZoomSetting", true);
+                    caps.SetCapability("ignoreZoomSetting", true);
                 }
 
                 try
                 {
-                    setDriver(new OrasiDriver(caps, new URL(getRemoteURL())));
+                    setDriver(new RemoteWebDriver(caps, new URL(RemoteURL)));
                 }
                 catch (MalformedURLException e)
                 {
@@ -486,23 +464,23 @@ namespace Orasi.Toolkit.Utils
                 }
 
             }
-            else if (getRunLocation().equalsIgnoreCase("remote") | getRunLocation().equalsIgnoreCase("sauce"))
+            else if (RunLocation.Equals("REMOTE") | RunLocation.Equals("SAUCE"))
             {
 
                 caps = new DesiredCapabilities();
-                caps.setCapability(CapabilityType.BROWSER_NAME, getBrowserUnderTest());
-                if (getBrowserVersion() != null)
+                caps.SetCapability(CapabilityType.BrowserName, BrowserUnderTest);
+                if (BrowserVersion != null)
                 {
-                    caps.setCapability(CapabilityType.VERSION, getBrowserVersion());
+                    caps.SetCapability(CapabilityType.Version, BrowserVersion);
                 }
-                caps.setCapability(CapabilityType.PLATFORM, getOperatingSystem());
+                caps.SetCapability(CapabilityType.Platform, OperatingSystem);
 
-                if (getBrowserUnderTest().toLowerCase().contains("ie")
-                        || getBrowserUnderTest().toLowerCase().contains("iexplore"))
+                if (BrowserUnderTest.toLowerCase().contains("ie")
+                        || BrowserUnderTest.toLowerCase().contains("iexplore"))
                 {
-                    caps.setCapability("ignoreZoomSetting", true);
+                    caps.SetCapability("ignoreZoomSetting", true);
                 }
-                caps.setCapability("name", getTestName());
+                caps.SetCapability("name", TestName);
                 URL sauceURL = null;
                 try
                 {
@@ -515,8 +493,8 @@ namespace Orasi.Toolkit.Utils
                     e.printStackTrace();
                 }
 
-                caps.setCapability("name", getTestName());
-                setDriver(new OrasiDriver(caps, sauceURL));
+                caps.SetCapability("name", TestName);
+                setDriver(new RemoteWebDriver(caps, sauceURL));
 
             }
             else
@@ -528,13 +506,14 @@ namespace Orasi.Toolkit.Utils
             getDriver().setElementTimeout(Constants.ELEMENT_TIMEOUT);
             getDriver().setPageTimeout(Constants.PAGE_TIMEOUT);
             getDriver().setScriptTimeout(Constants.DEFAULT_GLOBAL_DRIVER_TIMEOUT);
-            // setDefaultTestTimeout(Constants.DEFAULT_GLOBAL_DRIVER_TIMEOUT);
-            if (!getBrowserUnderTest().toLowerCase().contains("edge"))
-            {
-                getDriver().manage().deleteAllCookies();
-                getDriver().manage().window().maximize();
-            }
 
+            // setDefaultTestTimeout(Constants.DEFAULT_GLOBAL_DRIVER_TIMEOUT);
+            if (!BrowserUnderTest.ToUpper().Contains("EDGE"))
+            {
+                getDriver().Manage().Cookies.DeleteAllCookies();
+                getDriver().Manage().Window.Maximize();
+            }
+        }
     /**
     * Initializes the webdriver, sets up the run location, driver type,
     * launches the application.
@@ -570,7 +549,7 @@ namespace Orasi.Toolkit.Utils
          * Use ITestResult from @AfterMethod to determine run status before closing
          * test if reporting to sauce labs
          */
-        protected void endTest(String testName, ITestResult testResults)
+        protected void endTest(string testName, ITestResult testResults)
         {
             if (runLocation.equalsIgnoreCase("remote") | runLocation.equalsIgnoreCase("sauce"))
             {
