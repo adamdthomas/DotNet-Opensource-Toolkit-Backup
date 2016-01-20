@@ -2920,6 +2920,16 @@
             Gets an <see cref="T:OpenQA.Selenium.Html5.IApplicationCache" /> object for managing application cache.
             </summary>
     </member>
+    <member name="T:OpenQA.Selenium.Remote.IHasSessionId">
+      <summary>
+            Interface indicating the driver has a Session ID.
+            </summary>
+    </member>
+    <member name="P:OpenQA.Selenium.Remote.IHasSessionId.SessionId">
+      <summary>
+            Gets the session ID of the current session.
+            </summary>
+    </member>
     <member name="T:OpenQA.Selenium.Remote.RemoteWebDriver">
       <summary>
             Provides a way to use the driver through
@@ -3460,6 +3470,11 @@
             sequences of keystrokes representing file paths and names.
             </summary>
     </member>
+    <member name="P:OpenQA.Selenium.Remote.RemoteWebDriver.SessionId">
+      <summary>
+            Gets the <see cref="P:OpenQA.Selenium.Remote.RemoteWebDriver.SessionId" /> for the current session of this driver.
+            </summary>
+    </member>
     <member name="P:OpenQA.Selenium.Remote.RemoteWebDriver.IsSpecificationCompliant">
       <summary>
             Gets a value indicating whether or not the driver is compliant with the W3C WebDriver specification.
@@ -3468,11 +3483,6 @@
     <member name="P:OpenQA.Selenium.Remote.RemoteWebDriver.CommandExecutor">
       <summary>
             Gets the <see cref="T:OpenQA.Selenium.Remote.ICommandExecutor" /> which executes commands for this driver.
-            </summary>
-    </member>
-    <member name="P:OpenQA.Selenium.Remote.RemoteWebDriver.SessionId">
-      <summary>
-            Gets the <see cref="P:OpenQA.Selenium.Remote.RemoteWebDriver.SessionId" /> for the current session of this driver.
             </summary>
     </member>
     <member name="T:OpenQA.Selenium.Chrome.ChromeDriver">
@@ -3642,6 +3652,13 @@
       <summary>
             Gets or sets a value indicating whether to enable verbose logging for the ChromeDriver executable.
             Defaults to <see langword="false" />.
+            </summary>
+    </member>
+    <member name="P:OpenQA.Selenium.Chrome.ChromeDriverService.WhitelistedIPAddresses">
+      <summary>
+            Gets or sets the comma-delimited list of IP addresses that are approved to
+            connect to this instance of the Chrome driver. Defaults to an empty string,
+            which means only the local loopback address can connect.
             </summary>
     </member>
     <member name="P:OpenQA.Selenium.Chrome.ChromeDriverService.CommandLineArguments">
@@ -5872,6 +5889,13 @@
             be set to a valid directory.
             </remarks>
     </member>
+    <member name="P:OpenQA.Selenium.IE.InternetExplorerDriverService.WhitelistedIPAddresses">
+      <summary>
+            Gets or sets the comma-delimited list of IP addresses that are approved to
+            connect to this instance of the IEDriverServer. Defaults to an empty string,
+            which means only the local loopback address can connect.
+            </summary>
+    </member>
     <member name="P:OpenQA.Selenium.IE.InternetExplorerDriverService.CommandLineArguments">
       <summary>
             Gets the command-line arguments for the driver service.
@@ -6050,6 +6074,12 @@
       <summary>
             Gets or sets the amount of time the driver will attempt to look for a newly launched instance
             of Internet Explorer.
+            </summary>
+    </member>
+    <member name="P:OpenQA.Selenium.IE.InternetExplorerOptions.FileUploadDialogTimeout">
+      <summary>
+            Gets or sets the amount of time the driver will attempt to look for the file selection
+            dialog when attempting to upload a file.
             </summary>
     </member>
     <member name="P:OpenQA.Selenium.IE.InternetExplorerOptions.ForceCreateProcessApi">

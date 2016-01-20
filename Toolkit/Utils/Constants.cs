@@ -4,11 +4,23 @@
   /// </summary>
     public static class Constants
     {
+#pragma warning disable CS0649 // Field 'Constants.SAUCELABS_USERNAME' is never assigned to, and will always have its default value null
         internal static string SAUCELABS_USERNAME;
+#pragma warning restore CS0649 // Field 'Constants.SAUCELABS_USERNAME' is never assigned to, and will always have its default value null
+#pragma warning disable CS0649 // Field 'Constants.SAUCELABS_KEY' is never assigned to, and will always have its default value null
         internal static string SAUCELABS_KEY;
+#pragma warning restore CS0649 // Field 'Constants.SAUCELABS_KEY' is never assigned to, and will always have its default value null
+
+#pragma warning disable CS0649 // Field 'Constants.DRIVERS_PATH_LOCAL' is never assigned to, and will always have its default value null
         internal static string DRIVERS_PATH_LOCAL;
+#pragma warning restore CS0649 // Field 'Constants.DRIVERS_PATH_LOCAL' is never assigned to, and will always have its default value null
+#pragma warning disable CS0649 // Field 'Constants.PAGE_TIMEOUT' is never assigned to, and will always have its default value null
         internal static object PAGE_TIMEOUT;
+#pragma warning restore CS0649 // Field 'Constants.PAGE_TIMEOUT' is never assigned to, and will always have its default value null
+
+#pragma warning disable CS0649 // Field 'Constants.ELEMENT_TIMEOUT' is never assigned to, and will always have its default value null
         internal static object ELEMENT_TIMEOUT;
+#pragma warning restore CS0649 // Field 'Constants.ELEMENT_TIMEOUT' is never assigned to, and will always have its default value null
 
         /// <summary>
         /// Default Selenium implicit wait time in seconds</summary>

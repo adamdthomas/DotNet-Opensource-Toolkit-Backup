@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,12 +26,16 @@ import com.saucelabs.saucerest.SauceREST;
 */
 
 using OpenQA.Selenium.Remote;
+using OpenQA.Selenium.Support;
 using System.Threading;
 using System.Resources;
 using SaucelabsApiDotNet;
 using System.IO;
 using NPOI.Util;
 using System.Diagnostics;
+using OpenQA.Selenium;
+using NUnit.Framework.Interfaces;
+using System.Net;
 
 namespace Orasi.Toolkit.Utils
 {
@@ -48,6 +53,24 @@ namespace Orasi.Toolkit.Utils
         private string testEnvironment;
         private string testName;
         private string pageUrl;
+
+        public class Timeout : ITimeouts
+        {
+            public ITimeouts ImplicitlyWait(TimeSpan timeToWait)
+            {
+                throw new NotImplementedException();
+            }
+
+            public ITimeouts SetPageLoadTimeout(TimeSpan timeToWait)
+            {
+                throw new NotImplementedException();
+            }
+
+            public ITimeouts SetScriptTimeout(TimeSpan timeToWait)
+            {
+                throw new NotImplementedException();
+            }
+        }
 
         /* 
         WebDriver Fields
@@ -76,7 +99,6 @@ namespace Orasi.Toolkit.Utils
         */
         string SauceLabsURL = new Client("@ondemand.saucelabs.com:80/wd/hub", Constants.SAUCELABS_USERNAME, Constants.SAUCELABS_KEY).ToString();
 
-        
         //protected sauc SauceOnDemandAuthentication authentication = new SauceOnDemandAuthentication(
         //Base64Coder.decodeString(appURLRepository.getString("SAUCELABS_USERNAME")),
         //Base64Coder.decodeString(appURLRepository.getString("SAUCELABS_KEY")));
@@ -116,7 +138,7 @@ namespace Orasi.Toolkit.Utils
         {
             get
             {
-                browserUnderTest = browserUnderTest.ToUpper().Replace(" ","");
+                browserUnderTest = browserUnderTest.ToUpper().Replace(" ", "");
                 return browserUnderTest;
             }
             set
@@ -141,6 +163,7 @@ namespace Orasi.Toolkit.Utils
         {
             get
             {
+                operatingSystem.ToUpper().Replace(" ", "");
                 return operatingSystem;
             }
             set
@@ -153,6 +176,7 @@ namespace Orasi.Toolkit.Utils
         {
             get
             {
+                runLocation.ToUpper();
                 return runLocation;
             }
             set
@@ -185,7 +209,7 @@ namespace Orasi.Toolkit.Utils
             }
         }
 
-        public int Timeout
+        public int GlobalTimeout
         {
             get
             {
@@ -193,7 +217,7 @@ namespace Orasi.Toolkit.Utils
             }
             set
             {
-                int timeout = value;
+                int globalTimeout = value;
             }
         }
 
@@ -201,9 +225,9 @@ namespace Orasi.Toolkit.Utils
         {
             get
             {
-                if (RunLocation.Equals("sauce") | RunLocation.Equals("remote"))
-                    return  SauceLabsURL;
-                else if (RunLocation.Equals("grid"))
+                if (RunLocation.Equals("SAUCE") | RunLocation.Equals("REMOTE"))
+                    return SauceLabsURL;
+                else if (RunLocation.Equals("GRID"))
                     return SeleniumHubURL;
                 else
                     return "";
@@ -253,14 +277,13 @@ namespace Orasi.Toolkit.Utils
          * User controls to see the driver to be threaded or not. Only use when
          * using data provider threading
          */
-         public bool SetThreadDriver
+        public bool SetThreadDriver
         {
             get
             {
                 return setThreadDriver;
             }
             set
-
             {
                 setThreadDriver = value;
             }
@@ -274,15 +297,15 @@ namespace Orasi.Toolkit.Utils
         //    return appURLRepository;
         //}
 
-    /**
-	 * Launches the application under test. Gets the URL from an environment
-	 * properties file based on the application.
-	 * 
-	 * @param None
-	 * @version 12/16/2014
-	 * @author Justin Phlegar
-	 * @return Nothing
-	 */
+        /**
+         * Launches the application under test. Gets the URL from an environment
+         * properties file based on the application.
+         * 
+         * @param None
+         * @version 12/16/2014
+         * @author Justin Phlegar
+         * @return Nothing
+         */
         // @Step("Launch \"{0}\"")
         private void launchApplication(string URL)
         {
@@ -316,11 +339,11 @@ namespace Orasi.Toolkit.Utils
             DesiredCapabilities caps = new DesiredCapabilities();
             // If the location is local, grab the drivers for each browser type from
             // within the project
-            if (RunLocation.ToUpper().Equals("LOCAL"))
+            if (RunLocation.Equals("LOCAL"))
             {
                 //File file = null;
 
-                switch (OperatingSystem.ToUpper().Trim().Replace(" ", ""))
+                switch (OperatingSystem)
                 {
                     case "WINDOWS":
                         if (BrowserUnderTest.Equals("FIREFOX") || BrowserUnderTest.Equals("FF"))
@@ -386,18 +409,31 @@ namespace Orasi.Toolkit.Utils
                             {
                                 // Ensure the permission on the driver include
                                 // executable permissions
-                                Process proc = System.Runtime.
-                                        .exec(new string[] { "/bin/bash", "-c", "chmod 777 " + file.getAbsolutePath() });
-                                proc.WaitForExit();
+                                Process p = new Process();
+                                ProcessStartInfo info = new ProcessStartInfo();
+                                info.FileName = @"C:\cygwin\bin\bash.exe";
+
+                                p.StartInfo = info;
+                                p.Start();
+
+                                using (StreamWriter sw = p.StandardInput)
+                                {
+                                    if (sw.BaseStream.CanWrite)
+                                    {
+                                        sw.WriteLine("-c");
+                                        sw.WriteLine("chmod 777 " + Environment.GetEnvironmentVariable("webdriver.chrome.driver"));
+                                    }
+                                }
+                                p.WaitForExit();
                                 caps = DesiredCapabilities.Chrome();
 
                             }
-                            //catch (IllegalStateException ise)
-                            //{
-                            //    ise.printStackTrace();
-                            //    throw new IllegalStateException(
-                            //            "This has been seen to occur when the chromedriver file does not have executable permissions. In a terminal, navigate to the directory to which Maven pulls the drivers at runtime (e.g \"/target/classes/drivers/\") and execute the following command: chmod +rx chromedriver");
-                            //}
+                            catch (UnauthorizedAccessException uae)
+                            {
+                                Console.WriteLine(uae.StackTrace);
+                                throw new UnauthorizedAccessException(
+                                        "This has been seen to occur when the chromedriver file does not have executable permissions. In a terminal, navigate to the directory to which Maven pulls the drivers at runtime (e.g \"/target/classes/drivers/\") and execute the following command: chmod +rx chromedriver");
+                            }
                             catch (IOException ioe)
                             {
                                 Console.WriteLine(ioe.StackTrace);
@@ -432,6 +468,7 @@ namespace Orasi.Toolkit.Utils
                         {
                             caps = DesiredCapabilities.Firefox();
                         }
+                        break;
                     default:
                         break;
                 }
@@ -447,20 +484,11 @@ namespace Orasi.Toolkit.Utils
                     caps.SetCapability(CapabilityType.Version, BrowserVersion);
                 }
 
-                caps.SetCapability(CapabilityType.Platform, getGridPlatformByOS(OperatingSystem));
-                if (BrowserUnderTest.Equals("IE") || BrowserUnderTest.Equals("IEEXPLORE"))
+                caps.SetCapability(CapabilityType.Platform, GridPlatformTypeByOS(OperatingSystem));
+
+                if (BrowserUnderTest.Equals("IE") || BrowserUnderTest.Equals("IEXPLORE"))
                 {
                     caps.SetCapability("ignoreZoomSetting", true);
-                }
-
-                try
-                {
-                    setDriver(new RemoteWebDriver(caps, new URL(RemoteURL)));
-                }
-                catch (MalformedURLException e)
-                {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
                 }
 
             }
@@ -475,26 +503,27 @@ namespace Orasi.Toolkit.Utils
                 }
                 caps.SetCapability(CapabilityType.Platform, OperatingSystem);
 
-                if (BrowserUnderTest.toLowerCase().contains("ie")
-                        || BrowserUnderTest.toLowerCase().contains("iexplore"))
+                if (BrowserUnderTest.Equals("IE") || BrowserUnderTest.Equals("IEXPLORE"))
                 {
                     caps.SetCapability("ignoreZoomSetting", true);
                 }
                 caps.SetCapability("name", TestName);
-                URL sauceURL = null;
-                try
+
+                Uri uri;
+                string someUrl = SauceLabsURL;
+                if (!Uri.TryCreate(someUrl, UriKind.Absolute, out uri))
                 {
-                    sauceURL = new URL("http://" + authentication.getUsername() + ":" + authentication.getAccessKey()
-                            + "@ondemand.saucelabs.com:80/wd/hub");
+                    // the someUrl string did not contain a valid url 
+                    // inform your users about that
                 }
-                catch (MalformedURLException e)
+                else
                 {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
+                    var request = WebRequest.Create(uri);
+                    // ... safely proceed with executing the request
                 }
 
                 caps.SetCapability("name", TestName);
-                setDriver(new RemoteWebDriver(caps, sauceURL));
+                setDriver(new RemoteWebDriver(uri, caps));
 
             }
             else
@@ -503,26 +532,27 @@ namespace Orasi.Toolkit.Utils
                         "Parameter for run [Location] was not set to 'Local', 'Grid', 'Sauce', or 'Remote'");
             }
 
-            getDriver().setElementTimeout(Constants.ELEMENT_TIMEOUT);
-            getDriver().setPageTimeout(Constants.PAGE_TIMEOUT);
-            getDriver().setScriptTimeout(Constants.DEFAULT_GLOBAL_DRIVER_TIMEOUT);
+            // OrasiDriver feature: getDriver().SetElementTimeout(Constants.ELEMENT_TIMEOUT);
+            // OrasiDriver feature: getDriver().setPageTimeout(Constants.PAGE_TIMEOUT);
+            // OrasiDriver feature: getDriver().setScriptTimeout(Constants.DEFAULT_GLOBAL_DRIVER_TIMEOUT);
 
             // setDefaultTestTimeout(Constants.DEFAULT_GLOBAL_DRIVER_TIMEOUT);
+
             if (!BrowserUnderTest.ToUpper().Contains("EDGE"))
             {
                 getDriver().Manage().Cookies.DeleteAllCookies();
                 getDriver().Manage().Window.Maximize();
             }
         }
-    /**
-    * Initializes the webdriver, sets up the run location, driver type,
-    * launches the application.
-    * 
-    * @param testName
-    *            - Name of the test
-    * @version 12/16/2014
-    * @author Jessica Marshall
-    */
+        /**
+        * Initializes the webdriver, sets up the run location, driver type,
+        * launches the application.
+        * 
+        * @param testName
+        *            - Name of the test
+        * @version 12/16/2014
+        * @author Jessica Marshall
+        */
         protected RemoteWebDriver testStart(string testName)
         {
             // Uncomment the following line to have TestReporter outputs output to
@@ -530,18 +560,18 @@ namespace Orasi.Toolkit.Utils
             //TODO: TestReporter.setPrintToConsole(true);
             TestName = testName;
             driverSetup();
-            if (getPageURL().isEmpty())
+            if (PageURL.Length.Equals(0))
                 launchApplication();
             else
-                launchApplication(getPageURL());
+                launchApplication(PageURL);
             return getDriver();
         }
 
         protected void endTest(string testName)
         {
-            if (getDriver() != null && getDriver().getWindowHandles().size() > 0)
+            if (getDriver() != null && getDriver().CurrentWindowHandle.Length > 0)
             {
-                getDriver().Quit;
+                getDriver().Close();
             }
         }
 
@@ -551,12 +581,66 @@ namespace Orasi.Toolkit.Utils
          */
         protected void endTest(string testName, ITestResult testResults)
         {
-            if (runLocation.equalsIgnoreCase("remote") | runLocation.equalsIgnoreCase("sauce"))
+            if (RunLocation.Equals("REMOTE") | runLocation.Equals("SAUCE"))
             {
-                endSauceTest(testResults.getStatus());
+                //endSauceTest(testResults.ResultState);
             }
 
             endTest(testName);
+        }
+
+        // ************************************
+        // ************************************
+        // ************************************
+        // PAGE OBJECT METHODS
+        // ************************************
+        // ************************************
+        // ************************************
+
+        /**
+         * loops for a predetermined amount of time (defined by
+         * WebDriverSetup.getDefaultTestTimeout()) to determine if the DOM
+         * is in a ready-state
+         * @return boolean: true is the DOM is completely loaded, false otherwise
+         * @param N/A
+         */
+        // TODO: OrasiDriver Feature
+        //public bool pageLoaded()
+        //{
+        //    return new PageLoaded().isDomComplete(getDriver());
+        //}
+
+        /**
+         * loops for a predetermined amount of time (defined by
+         * OrasiDriver.getElementTimeout()) to determine if the
+         * Element is present in the DOM
+         * @param element - element with which to determine if a page is loaded
+         * @return boolean: true if the element is present in the DOM, false otherwise
+         */
+        // TODO: needs com.orasi.core.interfaces.Element
+        //public bool pageLoaded(Element element)
+        //{
+        //    return PageLoaded.syncPresent(getDriver(), element);
+        //}
+        private PlatformType GridPlatformTypeByOS(string os)
+        {
+            switch (os.ToUpper())
+            {
+                case "ANDROID":
+                    return PlatformType.Android;
+                case "WIN8":
+                case "WIN8.1":
+                case "WINDOWS":
+                    return PlatformType.Windows;
+                case "XP":
+                    return PlatformType.XP;
+                case "LINUX":
+                    return PlatformType.Linux;
+                case "MAC":
+                    return PlatformType.Mac;
+                default:
+                    return PlatformType.Any;
+            }
         }
     }
 }
