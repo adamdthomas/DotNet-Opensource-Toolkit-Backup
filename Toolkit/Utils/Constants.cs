@@ -14,25 +14,17 @@
 #pragma warning disable CS0649 // Field 'Constants.DRIVERS_PATH_LOCAL' is never assigned to, and will always have its default value null
         internal static string DRIVERS_PATH_LOCAL;
 #pragma warning restore CS0649 // Field 'Constants.DRIVERS_PATH_LOCAL' is never assigned to, and will always have its default value null
-#pragma warning disable CS0649 // Field 'Constants.PAGE_TIMEOUT' is never assigned to, and will always have its default value null
-        internal static object PAGE_TIMEOUT;
-#pragma warning restore CS0649 // Field 'Constants.PAGE_TIMEOUT' is never assigned to, and will always have its default value null
-
-#pragma warning disable CS0649 // Field 'Constants.ELEMENT_TIMEOUT' is never assigned to, and will always have its default value null
-        internal static object ELEMENT_TIMEOUT;
-#pragma warning restore CS0649 // Field 'Constants.ELEMENT_TIMEOUT' is never assigned to, and will always have its default value null
-
         /// <summary>
         /// Default Selenium implicit wait time in seconds</summary>
         public static int DEFAULT_GLOBAL_DRIVER_TIMEOUT { get { return 30; } }
 
         /// <summary>
         /// Default timeout in seconds for page/DOM/transitions</summary>
-        public static int DEFAULT_PAGE_TIMEOUT { get { return 15; } }
+        public static int PAGE_TIMEOUT { get { return 15; } }
 
         /// <summary>
         /// Default timeout in seconds for finding web elements on a page</summary>
-        public static int DEFAULT_ELEMENT_TIMEOUT { get { return 5; } }
+        public static int ELEMENT_TIMEOUT { get { return 5; } }
 
         /// <summary>
         /// Location of the environment URLs properties file</summary> 

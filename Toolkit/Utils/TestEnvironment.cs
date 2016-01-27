@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using OpenQA.Selenium.Remote;
-using OpenQA.Selenium.Support;
+using OpenQA.Selenium.Support.UI;
 using System.Threading;
 using System.Resources;
 using SaucelabsApiDotNet;
@@ -216,7 +216,7 @@ namespace Orasi.Toolkit.Utils
         {
             get
             {
-                if (RunLocation.Equals("SAUCE") | RunLocation.Equals("REMOTE"))
+                if (RunLocation.Equals("SAUCE"))
                     return SauceLabsURL;
                 else if (RunLocation.Equals("GRID"))
                     return SeleniumHubURL;
@@ -305,6 +305,7 @@ namespace Orasi.Toolkit.Utils
 
         private void launchApplication()
         {
+
             if (TestingEnvironment == null)
             {
                 launchApplication((Application.ToString().ToUpper()));
@@ -481,7 +482,7 @@ namespace Orasi.Toolkit.Utils
                 }
 
             }
-            else if (RunLocation.Equals("REMOTE") | RunLocation.Equals("SAUCE"))
+            else if (RunLocation.Equals("SAUCE"))
             {
 
                 caps = new DesiredCapabilities();
@@ -492,7 +493,7 @@ namespace Orasi.Toolkit.Utils
                 }
                 caps.SetCapability(CapabilityType.Platform, OperatingSystem);
 
-                if (BrowserUnderTest.Equals("IE") || BrowserUnderTest.Equals("IEXPLORE"))
+                if (BrowserUnderTest.ToUpper().Equals("IE") || BrowserUnderTest.ToUpper().Equals("IEXPLORE") || BrowserUnderTest.ToUpper().Replace(" ","").Equals("INTERNETEXPLORER"))
                 {
                     caps.SetCapability("ignoreZoomSetting", true);
                 }
@@ -518,8 +519,12 @@ namespace Orasi.Toolkit.Utils
             else
             {
                 throw new RuntimeException(
-                        "Parameter for run [Location] was not set to 'Local', 'Grid', 'Sauce', or 'Remote'");
+                        "Parameter for run [Location] was not set to 'Local', 'Grid', 'Sauce'");
             }
+
+            driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(Convert.ToDouble(Constants.ELEMENT_TIMEOUT)));
+            driver.Manage().Timeouts().SetPageLoadTimeout(TimeSpan.FromSeconds(Convert.ToDouble(Constants.PAGE_TIMEOUT)));
+            driver.Manage().Timeouts().SetScriptTimeout(TimeSpan.FromSeconds(Convert.ToDouble(Constants.DEFAULT_GLOBAL_DRIVER_TIMEOUT)));
 
             // OrasiDriver feature: getDriver().SetElementTimeout(Constants.ELEMENT_TIMEOUT);
             // OrasiDriver feature: getDriver().setPageTimeout(Constants.PAGE_TIMEOUT);
@@ -570,7 +575,7 @@ namespace Orasi.Toolkit.Utils
          */
         protected void endTest(string testName, ITestResult testResults)
         {
-            if (RunLocation.Equals("REMOTE") | runLocation.Equals("SAUCE"))
+            if (runLocation.Equals("SAUCE"))
             {
                 //endSauceTest(testResults.ResultState);
             }
