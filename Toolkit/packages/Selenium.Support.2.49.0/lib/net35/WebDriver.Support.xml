@@ -1670,6 +1670,11 @@
             <returns>The message returned by the invoked method, containing the return value and any
             out or ref parameters.</returns>
         </member>
+        <member name="P:OpenQA.Selenium.Support.PageObjects.WebElementProxy.WrappedElement">
+            <summary>
+            Gets the <see cref="T:OpenQA.Selenium.IWebElement"/> wrapped by this object.
+            </summary>
+        </member>
         <member name="P:OpenQA.Selenium.Support.PageObjects.WebElementProxy.Element">
             <summary>
             Gets the IWebElement object this proxy represents, returning a cached one if requested.

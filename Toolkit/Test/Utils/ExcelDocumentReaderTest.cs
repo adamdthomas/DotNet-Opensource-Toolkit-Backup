@@ -11,6 +11,9 @@ namespace Orasi.Toolkit.Test.Utils
         public void readDataFilePathAllRows()
         {
             // define test parameters
+            //Properties.Resources.test.GetValue.filePath;
+            //string test = Properties.Resources.test.ToString();
+            
             string filePath = @"C:\Users\Paul\Source\Repos\DotNet-Opensource-Toolkit\Toolkit\test.xls";
             string sheetName = "panther";
             // create new List to accept output of GetAllCells()

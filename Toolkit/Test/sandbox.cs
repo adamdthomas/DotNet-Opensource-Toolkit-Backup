@@ -22,6 +22,8 @@ namespace Orasi.Toolkit
 
             var wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(10));
             Assert.IsTrue(wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//a[text()='Logout']"))).Displayed);
+
+            //Orasi.Toolkit.Utils.TestEnvironment
         }
 
         [TearDown]

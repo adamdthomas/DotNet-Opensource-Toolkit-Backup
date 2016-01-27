@@ -39,7 +39,9 @@ namespace Orasi.Toolkit.Utils
                     found = true;
                 }
             }
+#pragma warning disable CS0168 // The variable 'nape' is declared but never used
             catch (NoAlertPresentException nape) { }
+#pragma warning restore CS0168 // The variable 'nape' is declared but never used
 
             return found;
         }
@@ -57,7 +59,9 @@ namespace Orasi.Toolkit.Utils
                 var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(timeout));
                 wait.Until(ExpectedConditions.AlertIsPresent());
             }
+#pragma warning disable CS0168 // The variable 'wdte' is declared but never used
             catch (WebDriverTimeoutException wdte)
+#pragma warning restore CS0168 // The variable 'wdte' is declared but never used
             {
                 return false;
             }
