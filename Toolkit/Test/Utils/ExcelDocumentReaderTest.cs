@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using NUnit.Framework;
 using Orasi.Toolkit.Utils;
 
@@ -11,7 +13,7 @@ namespace Orasi.Toolkit.Test.Utils
         public void readDataFilePathAllRows()
         {
             // define test parameters
-            string filePath = @"C:\Users\Paul\Source\Repos\DotNet-Opensource-Toolkit\Toolkit\test.xls";
+            string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory + "../../test.xls");
             string sheetName = "panther";
             // create new List to accept output of GetAllCells()
             List<Dataset> myDataset = new List<Dataset>();
