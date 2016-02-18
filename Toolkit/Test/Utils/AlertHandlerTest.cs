@@ -3,12 +3,14 @@ using OpenQA.Selenium.Firefox;
 using NUnit.Framework;
 using Orasi.Toolkit.Utils;
 using RelevantCodes.ExtentReports;
+using System;
 
 namespace Orasi.Toolkit.Test.Utils
 {
     [TestFixture]
     public class AlertHandlerTest
     {
+        
         private ExtentReports extent = ExtentManager.Instance;
         private ExtentTest test;
         FirefoxDriver _driver;
@@ -17,6 +19,7 @@ namespace Orasi.Toolkit.Test.Utils
         [SetUp]
         public void Startup()
         {
+            var extent = new ExtentReports(AppDomain.CurrentDomain.BaseDirectory, false);
             test = extent
                 .StartTest("Startup", "Opens Firefox browser and navigates to github page");
 
@@ -91,6 +94,7 @@ namespace Orasi.Toolkit.Test.Utils
             _driver.Quit();
             extent.EndTest(test);
             extent.Flush();
+           
         }
     }
 }

@@ -137,7 +137,6 @@
   <ItemGroup>
     <Compile Include="Test\sandbox.cs" />
     <Compile Include="Test\Utils\ExcelDocumentReaderTest.cs" />
-    <Compile Include="Test\Utils\ExtentManagerInitial.cs" />
     <Compile Include="Test\Utils\FrameHandlerTest.cs" />
     <Compile Include="Test\Utils\AlertHandlerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
