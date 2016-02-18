@@ -4,12 +4,31 @@ using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
 using NUnit.Framework;
 using Orasi.Toolkit.Utils;
+using RelevantCodes.ExtentReports;
 
+public class ExtentManager
+{
+    private static ExtentReports extent;
+    public static ExtentReports Instance
+    {
+        get
+        {
+            if (extent == null)
+            {
+                extent = new ExtentReports(@"file-path", true);
+            }
+            return extent;
+        }
+    }
+}
 namespace Orasi.Toolkit
 {
+
     [TestFixture]
     public class Sandbox
-        {
+    {
+        private ExtentReports extent = ExtentManager.Instance;
+        private ExtentTest test;
         FirefoxDriver _driver;
         [Test]
         public void SampleLoginTest()
@@ -28,6 +47,8 @@ namespace Orasi.Toolkit
         //[OneTimeTearDown]
         public void TearDown()
         {
+            extent.EndTest(test);
+            extent.Flush();
             _driver.Quit();
         }
 
