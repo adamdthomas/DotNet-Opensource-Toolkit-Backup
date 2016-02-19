@@ -19,19 +19,23 @@ namespace Orasi.Toolkit.Test.Utils
         [SetUp]
         public void Startup()
         {
-            var extent = new ExtentReports(AppDomain.CurrentDomain.BaseDirectory, false);
+            //var extent = new ExtentReports(AppDomain.CurrentDomain.BaseDirectory, false);
             test = extent
-                .StartTest("Startup", "Opens Firefox browser and navigates to github page");
-
+                .StartTest("Alert Handling Startup", "Opens Firefox browser and navigates to github page")
+                .AssignCategory("BrowserOpen");
             test.Log(LogStatus.Info, "Navigating to Github page");
                 
             _driver = new FirefoxDriver();
             _driver.Navigate().GoToUrl("http://orasi.github.io/Selenium-Java-Core/sites/unitTests/orasi/utils/alertHandler.html");
         }
 
+
         [Test]
         public void IsAlertPresent()
         {
+            test = extent
+                .StartTest("IsAlertPresent", "Tests page for presence of alert")
+                .AssignCategory("AllertHandling");
             try
             {
                 Assert.True(AlertHandler.IsAlertPresent(_driver, 3));
@@ -49,6 +53,9 @@ namespace Orasi.Toolkit.Test.Utils
         [Test]
         public void HandleAlertTest()
         {
+            test = extent
+                .StartTest("HandleAlertTest", "Tests page for presence of alert")
+                .AssignCategory("AllertHandling");
             try
             {
                 Assert.IsTrue(AlertHandler.HandleAlert(_driver, 3));
@@ -65,6 +72,9 @@ namespace Orasi.Toolkit.Test.Utils
         [Test]
         public void HandleAllAlertTest()
         {
+            test = extent
+                .StartTest("HandleAllAlertTest", "Tests page for presence of alerts")
+                .AssignCategory("AllertHandling");
             try
             {
                 Assert.IsTrue(AlertHandler.HandleAllAlerts(_driver, 2));

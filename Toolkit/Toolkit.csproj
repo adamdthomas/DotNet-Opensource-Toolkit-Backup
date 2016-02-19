@@ -85,7 +85,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <Private>False</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -113,10 +113,18 @@
     </Reference>
     <Reference Include="RelevantCodes.ExtentReports">
       <HintPath>..\..\Downloads\extentreports-net-v2.40.1\RelevantCodes.ExtentReports.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Configuration" />
-    <Reference Include="System.Drawing" />
+    <Reference Include="System">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Configuration">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.XML" />
     <Reference Include="WebDriver, Version=2.45.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\ThirdParty\Selenium\WebDriver.dll</HintPath>
@@ -145,6 +153,7 @@
     <Compile Include="Utils\Base64Encoder.cs" />
     <Compile Include="Utils\Constants.cs" />
     <Compile Include="Utils\ExcelDocumentReader.cs" />
+    <Compile Include="Utils\ExtentManager.cs" />
     <Compile Include="Utils\FrameHandler.cs" />
     <Compile Include="Utils\Sleeper.cs" />
   </ItemGroup>
@@ -176,6 +185,8 @@
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
+    <Content Include="extent-config.xml" />
+    <Content Include="packages\extentreports-net-v2.40.1\extent-config.xml" />
     <Content Include="packages\Selenium.WebDriver.MicrosoftWebDriver.10.0.10240.0\driver\MicrosoftWebDriver.exe">
       <Link>MicrosoftWebDriver.exe</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
