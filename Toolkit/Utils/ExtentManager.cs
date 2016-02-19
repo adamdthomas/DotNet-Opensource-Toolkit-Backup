@@ -17,7 +17,7 @@ namespace Orasi.Toolkit.Utils
             {
                 if (extent == null)
                 {
-                    extent = new ExtentReports(AppDomain.CurrentDomain.BaseDirectory + "/Extent_Report.html", false, DisplayOrder.OldestFirst);
+                    extent = new ExtentReports(AppDomain.CurrentDomain.BaseDirectory + "/Extent_Report.html", true, DisplayOrder.OldestFirst);
                 }
                 return extent;
             }
