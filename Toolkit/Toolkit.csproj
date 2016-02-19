@@ -160,6 +160,75 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+    <None Include="packages\Appium.WebDriver.1.4.1.1\Appium.WebDriver.1.4.1.1.nupkg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="packages\Castle.Core.3.3.3\Castle.Core.3.3.3.nupkg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="packages\Newtonsoft.Json.7.0.1\Newtonsoft.Json.7.0.1.nupkg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="packages\Newtonsoft.Json.7.0.1\tools\install.ps1">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="packages\NPOI.2.1.3.1\LICENSE">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="packages\NPOI.2.1.3.1\NPOI.2.1.3.1.nupkg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="packages\NUnit.3.0.1\NUnit.3.0.1.nupkg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="packages\NUnitTestAdapter.2.0.0\NUnitTestAdapter.2.0.0.nupkg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="packages\NUnitTestAdapter.2.0.0\tools\install.ps1">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="packages\Selenium.Support.2.48.2\Selenium.Support.2.48.2.nupkg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="packages\Selenium.WebDriver.2.48.2\Selenium.WebDriver.2.48.2.nupkg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="packages\Selenium.WebDriver.ChromeDriver.2.20.0.0\Selenium.WebDriver.ChromeDriver.2.20.0.0.nupkg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="packages\Selenium.WebDriver.ChromeDriver.2.20.0.0\Selenium.WebDriver.ChromeDriver.2.20.0.nupkg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="packages\Selenium.WebDriver.ChromeDriver.2.20.0.0\tools\Install.ps1">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="packages\Selenium.WebDriver.ChromeDriver.2.20.0.0\tools\Uninstall.ps1">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="packages\Selenium.WebDriver.IEDriver.2.48.0.0\Selenium.WebDriver.IEDriver.2.48.0.0.nupkg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="packages\Selenium.WebDriver.IEDriver.2.48.0.0\Selenium.WebDriver.IEDriver.2.48.0.nupkg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="packages\Selenium.WebDriver.IEDriver.2.48.0.0\tools\Install.ps1">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="packages\Selenium.WebDriver.IEDriver.2.48.0.0\tools\Uninstall.ps1">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="packages\Selenium.WebDriver.MicrosoftWebDriver.10.0.10240.0\Selenium.WebDriver.MicrosoftWebDriver.10.0.10240.0.nupkg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="packages\Selenium.WebDriver.MicrosoftWebDriver.10.0.10240.0\Selenium.WebDriver.MicrosoftWebDriver.10.0.10240.nupkg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="packages\Selenium.WebDriver.MicrosoftWebDriver.10.0.10240.0\tools\Install.ps1">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="packages\Selenium.WebDriver.MicrosoftWebDriver.10.0.10240.0\tools\Uninstall.ps1">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <Resource Include="test.xls">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
@@ -186,10 +255,261 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Content Include="extent-config.xml" />
-    <Content Include="packages\extentreports-net-v2.40.1\extent-config.xml" />
+    <Content Include="packages\Appium.WebDriver.1.4.1.1\lib\net40\appium-dotnet-driver.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="packages\Appium.WebDriver.1.4.1.1\lib\net40\appium-dotnet-driver.XML">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="packages\Castle.Core.3.3.3\ASL - Apache Software Foundation License.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="packages\Castle.Core.3.3.3\BreakingChanges.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="packages\Castle.Core.3.3.3\Changes.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="packages\Castle.Core.3.3.3\lib\net35\Castle.Core.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="packages\Castle.Core.3.3.3\lib\net35\Castle.Core.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="packages\Castle.Core.3.3.3\lib\net40-client\Castle.Core.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="packages\Castle.Core.3.3.3\lib\net40-client\Castle.Core.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="packages\Castle.Core.3.3.3\lib\net45\Castle.Core.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="packages\Castle.Core.3.3.3\lib\net45\Castle.Core.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="packages\Castle.Core.3.3.3\lib\sl4\Castle.Core.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="packages\Castle.Core.3.3.3\lib\sl4\Castle.Core.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="packages\Castle.Core.3.3.3\lib\sl5\Castle.Core.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="packages\Castle.Core.3.3.3\lib\sl5\Castle.Core.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="packages\Castle.Core.3.3.3\License.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="packages\Castle.Core.3.3.3\readme.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="packages\extentreports-net-v2.40.1\extent-config.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="packages\extentreports-net-v2.40.1\RelevantCodes.ExtentReports.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="packages\Newtonsoft.Json.7.0.1\lib\net20\Newtonsoft.Json.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="packages\Newtonsoft.Json.7.0.1\lib\net20\Newtonsoft.Json.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="packages\Newtonsoft.Json.7.0.1\lib\net35\Newtonsoft.Json.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="packages\Newtonsoft.Json.7.0.1\lib\net35\Newtonsoft.Json.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="packages\Newtonsoft.Json.7.0.1\lib\net40\Newtonsoft.Json.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="packages\Newtonsoft.Json.7.0.1\lib\net40\Newtonsoft.Json.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="packages\Newtonsoft.Json.7.0.1\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="packages\Newtonsoft.Json.7.0.1\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="packages\Newtonsoft.Json.7.0.1\lib\portable-net45+wp80+win8+wpa81+dnxcore50\Newtonsoft.Json.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="packages\Newtonsoft.Json.7.0.1\lib\portable-net45+wp80+win8+wpa81+dnxcore50\Newtonsoft.Json.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="packages\NPOI.2.1.3.1\lib\net20\ICSharpCode.SharpZipLib.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="packages\NPOI.2.1.3.1\lib\net20\NPOI.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="packages\NPOI.2.1.3.1\lib\net20\NPOI.OOXML.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="packages\NPOI.2.1.3.1\lib\net20\NPOI.OOXML.XML">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="packages\NPOI.2.1.3.1\lib\net20\NPOI.OpenXml4Net.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="packages\NPOI.2.1.3.1\lib\net20\NPOI.OpenXml4Net.XML">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="packages\NPOI.2.1.3.1\lib\net20\NPOI.OpenXmlFormats.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="packages\NPOI.2.1.3.1\lib\net20\NPOI.XML">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="packages\NPOI.2.1.3.1\lib\net40\ICSharpCode.SharpZipLib.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="packages\NPOI.2.1.3.1\lib\net40\NPOI.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="packages\NPOI.2.1.3.1\lib\net40\NPOI.OOXML.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="packages\NPOI.2.1.3.1\lib\net40\NPOI.OOXML.XML">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="packages\NPOI.2.1.3.1\lib\net40\NPOI.OpenXml4Net.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="packages\NPOI.2.1.3.1\lib\net40\NPOI.OpenXml4Net.XML">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="packages\NPOI.2.1.3.1\lib\net40\NPOI.OpenXmlFormats.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="packages\NPOI.2.1.3.1\lib\net40\NPOI.XML">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="packages\NPOI.2.1.3.1\logo\120_120.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="packages\NPOI.2.1.3.1\logo\240_240.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="packages\NPOI.2.1.3.1\logo\32_32.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="packages\NPOI.2.1.3.1\logo\60_60.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="packages\NPOI.2.1.3.1\Read Me.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="packages\NPOI.2.1.3.1\Release Notes.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="packages\NUnit.3.0.1\CHANGES.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="packages\NUnit.3.0.1\lib\dotnet\nunit.framework.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="packages\NUnit.3.0.1\lib\dotnet\nunit.framework.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="packages\NUnit.3.0.1\lib\net20\nunit.framework.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="packages\NUnit.3.0.1\lib\net20\nunit.framework.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="packages\NUnit.3.0.1\lib\net40\nunit.framework.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="packages\NUnit.3.0.1\lib\net40\nunit.framework.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="packages\NUnit.3.0.1\lib\net45\nunit.framework.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="packages\NUnit.3.0.1\lib\net45\nunit.framework.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="packages\NUnit.3.0.1\lib\portable-net45+win8+wp8+wpa81+Xamarin.Mac+MonoAndroid10+MonoTouch10+Xamarin.iOS10\nunit.framework.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="packages\NUnit.3.0.1\lib\portable-net45+win8+wp8+wpa81+Xamarin.Mac+MonoAndroid10+MonoTouch10+Xamarin.iOS10\nunit.framework.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="packages\NUnit.3.0.1\LICENSE.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="packages\NUnit.3.0.1\NOTICES.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="packages\NUnitTestAdapter.2.0.0\lib\nunit.core.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="packages\NUnitTestAdapter.2.0.0\lib\nunit.core.interfaces.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="packages\NUnitTestAdapter.2.0.0\lib\nunit.util.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="packages\NUnitTestAdapter.2.0.0\lib\NUnit.VisualStudio.TestAdapter.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="packages\Selenium.Support.2.48.2\lib\net35\WebDriver.Support.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="packages\Selenium.Support.2.48.2\lib\net35\WebDriver.Support.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="packages\Selenium.Support.2.48.2\lib\net40\WebDriver.Support.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="packages\Selenium.Support.2.48.2\lib\net40\WebDriver.Support.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="packages\Selenium.WebDriver.2.48.2\lib\net35\WebDriver.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="packages\Selenium.WebDriver.2.48.2\lib\net35\WebDriver.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="packages\Selenium.WebDriver.2.48.2\lib\net40\WebDriver.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="packages\Selenium.WebDriver.2.48.2\lib\net40\WebDriver.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="packages\Selenium.WebDriver.ChromeDriver.2.20.0.0\content\README-ChromeDriver.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="packages\Selenium.WebDriver.ChromeDriver.2.20.0.0\driver\chromedriver.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="packages\Selenium.WebDriver.IEDriver.2.48.0.0\content\README-IEDriver.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="packages\Selenium.WebDriver.IEDriver.2.48.0.0\driver\IEDriverServer.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="packages\Selenium.WebDriver.MicrosoftWebDriver.10.0.10240.0\content\README-MicrosoftWebDriver.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="packages\Selenium.WebDriver.MicrosoftWebDriver.10.0.10240.0\driver\MicrosoftWebDriver.exe">
       <Link>MicrosoftWebDriver.exe</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="packages\Selenium.WebDriver.MicrosoftWebDriver.10.0.10240.0\driver\MicrosoftWebDriver.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>
