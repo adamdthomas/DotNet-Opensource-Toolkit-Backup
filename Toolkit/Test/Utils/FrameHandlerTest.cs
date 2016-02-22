@@ -38,7 +38,7 @@ namespace Orasi.Toolkit.Test.Utils
         }
                
 
-        [Test, Category("Unit")]
+        [Test]
         public void _01_MoveToChildFrame()
         {
             test = extent
@@ -60,7 +60,7 @@ namespace Orasi.Toolkit.Test.Utils
 
 }
 
-        [Test, Category("Unit")]
+        [Test]
         public void _02_GetCurrentFrameName()
         {
             test = extent
@@ -78,7 +78,7 @@ namespace Orasi.Toolkit.Test.Utils
             }
         }
 
-        [Test, Category("Unit")]
+        [Test]
         public void _03_GetDefaultContext()
         {
             test = extent
@@ -97,7 +97,7 @@ namespace Orasi.Toolkit.Test.Utils
             }
         }
 
-        [Test, Category("Unit")]
+        [Test]
         public void _04_MoveToChildFrameArray()
         {
             test = extent
@@ -119,7 +119,7 @@ namespace Orasi.Toolkit.Test.Utils
             }
         }
 
-        [Test, Category("Unit")]
+        [Test]
         public void _05_MoveToParentFrame()
         {
             test = extent
@@ -138,7 +138,7 @@ namespace Orasi.Toolkit.Test.Utils
             }
         }
 
-        [Test, Category("Unit")]
+        [Test]
         public void _06_MoveToSiblingFrame()
         {
             test = extent
