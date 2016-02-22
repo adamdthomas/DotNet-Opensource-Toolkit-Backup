@@ -19,7 +19,7 @@ ExtentReports (.NET 2.40)
 ```
 
 ## Creating Test
-* Create a new Class in your Project for your tests.  Add `using System`, `using NUnit.Framework`, and `using NUnit.Framework` to the top of the class file.
+* Create a new Class in your Project for your tests.  Add `using System`, `using NUnit.Framework`, and `RelevantCodes.ExtentReports` to the top of the class file.
 * Add `[TestFixture]` as a header for your class
 * Instantiate `private ExtentReports extent` and `private ExtentTest test`
 * Add `[Test]` as a header to each of the methods you want to use as a test.
@@ -28,7 +28,10 @@ ExtentReports (.NET 2.40)
 * Add `[TearDown]` header to close class and flush tests.
 * Your Test class should look something like this:
 ```
+using System;
 using NUnit.Framework;
+using RelevantCodes.ExtentReports;
+
   [TestFixture]
   public class MyTests{
       private ExtentReports extent = ExtentManager.Instance;
@@ -88,3 +91,4 @@ using NUnit.Framework;
         }
   }
 ```
+## Jenkins setup for C# ExtentReports
