@@ -15,6 +15,7 @@ Licensed under [BSD License](https://github.com/Orasi/DotNet-Opensource-Toolkit/
 * Go to 'Tools>NuGet Package Manager>Manage NuGet Packages for Solution' and install the following packages:
 ```
 NUnit (Latest stable 3.0.1)
+ExtentReports (.NET 2.40)
 ```
 
 ## Creating Test
@@ -90,4 +91,4 @@ using RelevantCodes.ExtentReports;
         }
   }
 ```
-```
+## Jenkins setup for C# ExtentReports
