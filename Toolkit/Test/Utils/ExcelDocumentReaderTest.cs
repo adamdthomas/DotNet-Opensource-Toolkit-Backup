@@ -30,7 +30,7 @@ namespace Orasi.Toolkit.Test.Utils
             // define test parameters
             string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory + "../../test.xls");
             string sheetName = "panther";
-            test.Log(LogStatus.Pass, sheetName + "found!");
+            test.Log(LogStatus.Pass, sheetName + " found!");
 
             test.Log(LogStatus.Info, "Creating a new List");
             try
