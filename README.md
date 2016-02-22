@@ -15,20 +15,80 @@ Licensed under [BSD License](https://github.com/Orasi/DotNet-Opensource-Toolkit/
 * Go to 'Tools>NuGet Package Manager>Manage NuGet Packages for Solution' and install the following packages:
 ```
 NUnit (Latest stable 3.0.1)
+ExtentReports (.NET 2.40)
 ```
 
 ## Creating Test
-* Create a new Class in your Project for your tests.  Add `using NUnit.Framework` to the top of the class file.
+* Create a new Class in your Project for your tests.  Add `using System`, `using NUnit.Framework`, and `RelevantCodes.ExtentReports` to the top of the class file.
 * Add `[TestFixture]` as a header for your class
+* Instantiate `private ExtentReports extent` and `private ExtentTest test`
 * Add `[Test]` as a header to each of the methods you want to use as a test.
+* Initialize test
+* Start Test
+* Add `[TearDown]` header to close class and flush tests.
 * Your Test class should look something like this:
 ```
+using System;
 using NUnit.Framework;
+using RelevantCodes.ExtentReports;
+
   [TestFixture]
   public class MyTests{
+      private ExtentReports extent = ExtentManager.Instance;
+      private ExtentTest test;
+      
       [Test]
       public void SearchandBookFlight() {
-          //Test Actions/Calls
+          //Initializing Test
+          test = extent
+              .StartTest("Test Name", "Test Description")
+              .AssignCategory("Test Category");
+              
+          // test.Log(Logstatus.Info, "Any information can be passed at anytime in this manner."
+          
+          try
+          {
+              //Test Actions/Calls
+              test.Log(LogStatus.Pass, "Passed Message"
+          }
+          catch (Exception ex) //Exception types can be used instead of the basic exception, offering the possibility of more details
+          {
+              test.Log(LogStatus.Fail, "<pre>" + ex.StackTrace + "</pre>");
+          }
+          
       }
+      
+      [TearDown]
+      public void TearDown()
+        {
+            var status = TestContext.CurrentContext.Result.Outcome.Status;
+            var stacktrace = string.IsNullOrEmpty(TestContext.CurrentContext.Result.StackTrace)
+                    ? ""
+                    : string.Format("<pre>{0}</pre>", TestContext.CurrentContext.Result.StackTrace);
+            LogStatus logstatus;
+
+            switch (status)
+            {
+                case TestStatus.Failed:
+                    logstatus = LogStatus.Fail;
+                    break;
+                case TestStatus.Inconclusive:
+                    logstatus = LogStatus.Warning;
+                    break;
+                case TestStatus.Skipped:
+                    logstatus = LogStatus.Skip;
+                    break;
+                default:
+                    logstatus = LogStatus.Pass;
+                    break;
+            }
+
+            test.Log(logstatus, "Test ended with " + logstatus + stacktrace);
+
+            extent.EndTest(test);
+            extent.Flush();
+            _driver.Quit();
+        }
   }
 ```
+## Jenkins setup for C# ExtentReports
