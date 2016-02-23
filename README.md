@@ -192,15 +192,27 @@ A Windows Slave is neccesary when running Jenkins on a Linux server in order to 
 	- Select your credentials for GitHub. **If Credentials have not been created come back after you have created them.
 	- Select the `Git Executable` for the Windows slave
 	- Click `Add` and select `Force polling using workspace`
-* Under `Build` click `Add build step` and select `Build a Visual Studio project...` and again for `Execute Shell`
-	`Build a Visual Studio project or solution using MSBuild`
-		- Select the .Net version that relates to your project.
-		- Enter the location of the .sln or. proj from the root directory (ex: "Toolkit/Toolkit.sln")
-		- In `Command Line Arguments` specify the command-line arguments 
-			(ex  /p:Configuration=Debug /p:Platform="Any CPU")
-	`Execute Shell` 
-		- Use command line arguments to tell Jenkins to use the NUnit console application on the .dll from the project
-		
-		#!/bin/sh
+* Under `Build Triggers` select `Build when a change is pushed to GitHub` and `Poll SCM` 
+	- Enter a schedule (ex. checks for changes every 15 minutes `H/15 * * * *`)
+* Under `Build` click `Add build step` and select `Build a Visual Studio project...`
+	 	and again for `Execute Shell`
+
+* `Build a Visual Studio project or solution using MSBuild`
+	- Select the .Net version that relates to your project.
+	- Enter the location of the .sln or. proj from the root directory (ex: "Toolkit/Toolkit.sln")
+	- In `Command Line Arguments` specify the command-line arguments 
+		(ex  /p:Configuration=Debug /p:Platform="Any CPU")
+* `Execute Shell` 
+	- Use command line arguments to tell Jenkins to use the NUnit console application on the .dll from the project
+```
+	#!/bin/sh
 	"C:\dotnet_Selenium\dotnet_Selenium\SeleniumToolkit\packages\NUnit.Console.3.0.1\tools\nunit3-console.exe"
 	"C:\Slave\test\Toolkit\bin\Debug\Orasi.Toolkit.dll" 
+```
+* Under `Post-build Actions` click `Add post-build action` and select `Publish HTML reports`
+	- `HTML directory to archive` is the location where the .dll project file is located in relation to the linux workspace
+		(`\Toolkit\bin\Debug`)
+	- `Index page[s]` is where you input the savename of your report file (`ExtentReport.html`)
+	- `Report Title` is where you input the desired title for your Report (`Dot Net Orasi Toolkit`)
+	- Click `Publishing options...` and select `Keep past HTML reports`
+* Emotional Jenkins and Activate Chuck Norris are available in the Post-Build section and should be enabled if desired.
