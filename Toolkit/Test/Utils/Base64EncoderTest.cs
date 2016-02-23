@@ -25,7 +25,7 @@ namespace Orasi.Toolkit.Test.Utils
             }
             catch (Exception ex)
             {
-                test.Log(LogStatus.Fail, "String was not encoded" + "<pre>" + ex.StackTrace + "</pre");
+                test.Log(LogStatus.Fail, "<pre>" + ex.StackTrace + "</pre");
             }
 
         }
@@ -43,7 +43,7 @@ namespace Orasi.Toolkit.Test.Utils
             }
             catch (Exception ex)
             {
-                test.Log(LogStatus.Fail, "String was not decoded. The world is forever doomed" + "<pre>" + ex.StackTrace + "</pre");
+                test.Log(LogStatus.Fail, "<pre>" + ex.StackTrace + "</pre");
             }
         }
         [TearDown]
