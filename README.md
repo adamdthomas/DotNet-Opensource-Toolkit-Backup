@@ -141,6 +141,7 @@ to utilize Extent Reports.
 * `Manage Jenkins > Script Console`
 	- Enter `System.setProperty("hudson.model.DirectoryBrowserSupport.CSP", "")` 
 		into script console and run to allow permissions for ExtentReports. ***This may need to be done everytime Jenkins restarts!***
+		To prevent this, you must create a file (`$JENKINS_HOME/init.groovy`) containing this script.
 		
 
 * extent-config.xml is the configuration file for ExtentReports. 
