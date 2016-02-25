@@ -85,7 +85,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <Private>True</Private>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -149,13 +149,16 @@
     <Compile Include="Test\Utils\AlertHandlerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Test\Utils\Base64EncoderTest.cs" />
+    <Compile Include="Test\Utils\WindowHandlerTest.cs" />
     <Compile Include="Utils\AlertHandler.cs" />
     <Compile Include="Utils\Base64Encoder.cs" />
     <Compile Include="Utils\Constants.cs" />
+    <Compile Include="Utils\dict.cs" />
     <Compile Include="Utils\ExcelDocumentReader.cs" />
     <Compile Include="Utils\ExtentManager.cs" />
     <Compile Include="Utils\FrameHandler.cs" />
     <Compile Include="Utils\Sleeper.cs" />
+    <Compile Include="Utils\WindowHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
