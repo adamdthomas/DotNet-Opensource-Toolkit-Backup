@@ -79,9 +79,9 @@ namespace Orasi.Toolkit.Test.Utils
             var URL = @"http://google.com";
             var WindowTitle = "Google";
             var LinkMethod = By.Name("btnI");
-            String LogInfo2 = "Parent Window Title: ";
-            var LogInfo3 = "New window has been opened.";
-            var LogInfo4 = "New Window Title: ";
+            string LogInfo2 = "Parent Window Title: ";
+            string LogInfo3 = "New window has been opened.";
+            string LogInfo4 = "New Window Title: ";
             object WinMethodName = WindowHandler.SwapToNewWindow(_driver, URL, WindowTitle, LinkMethod, LogInfo2, LogInfo3, LogInfo4);
             dict.TryCatch("NewWindowTest","Test to open a new Window and change focus to it","Windows", ref WinMethodName, "Test has reached the new window.", "Test is beginning. Time is :" + DateTime.Now.ToString("h:mm:ss tt"), LogInfo2, LogInfo3, LogInfo4);
             

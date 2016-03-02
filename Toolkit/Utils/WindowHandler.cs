@@ -182,7 +182,12 @@ namespace Orasi.Toolkit.Utils
                 string expectedNewWindowTitle = WindowTitle;
 
                 Thread.Sleep(2000); //Static wait is not recommended
-                WindowHandlerTest.test.Log(LogStatus.Info, LogInfo2 + driver.Title);
+                if (parentWindow == expectedNewWindowTitle)
+                {
+                    WindowHandlerTest.test.Log(LogStatus.Info, LogInfo2 + driver.Title);
+                }
+                
+                
 
                 //Click on the link to open new window
                 IWebElement OpenPage = driver.FindElement(LinkElement);
@@ -205,13 +210,14 @@ namespace Orasi.Toolkit.Utils
                     if (allWindowHandles[i] != parentWindow)
                     {
                         newWindow = allWindowHandles[i];
+                        WindowHandlerTest.test.Log(LogStatus.Info, LogInfo4 + driver.Title);
                     }
                 }
 
                 //Switch to new window handle.
                 driver.SwitchTo().Window(newWindow);
 
-                WindowHandlerTest.test.Log(LogStatus.Info, LogInfo4 + driver.Title);
+                //WindowHandlerTest.test.Log(LogStatus.Info, LogInfo4 + driver.Title);
 
                 //You can verify the title of new window to verify whether is in focus or not.
                 Assert.AreEqual(expectedNewWindowTitle, driver.Title);
