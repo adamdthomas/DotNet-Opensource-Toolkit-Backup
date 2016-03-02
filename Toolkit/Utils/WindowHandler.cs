@@ -165,7 +165,7 @@ namespace Orasi.Toolkit.Utils
         /// <param name="ElementMethod">Allows user to input desired method for discovery</param>
         /// <param name="LinkElement">Defines Element to Wait for in OpenPage</param>
         /// <returns></returns>
-        public static bool SwapToNewWindow(IWebDriver driver, string URL, string WindowTitle, By LinkElement, string LogInfo2 = null, string LogInfo3 = null, string LogInfo4 = null)
+        public static bool SwapToNewWindow(IWebDriver driver, string URL, string WindowTitle, By LinkElement, string LogInfo2, string LogInfo3, string LogInfo4)
         {
            
                 
@@ -182,7 +182,7 @@ namespace Orasi.Toolkit.Utils
                 string expectedNewWindowTitle = WindowTitle;
 
                 Thread.Sleep(2000); //Static wait is not recommended
-                WindowHandlerTest.test.Log(LogStatus.Info, (LogInfo2 + " " + driver.Title));
+                WindowHandlerTest.test.Log(LogStatus.Info, LogInfo2 + driver.Title);
 
                 //Click on the link to open new window
                 IWebElement OpenPage = driver.FindElement(LinkElement);
@@ -196,7 +196,7 @@ namespace Orasi.Toolkit.Utils
                 //If allWindowHandles.Count is greater than 1 then you can say that new window has been opened.
                 if (allWindowHandles.Count > 1)
                 {
-                    WindowHandlerTest.test.Log(LogStatus.Info, (LogInfo3));
+                    WindowHandlerTest.test.Log(LogStatus.Info, LogInfo3);
                 }
 
                 //Get new window handle
@@ -211,7 +211,7 @@ namespace Orasi.Toolkit.Utils
                 //Switch to new window handle.
                 driver.SwitchTo().Window(newWindow);
 
-                WindowHandlerTest.test.Log(LogStatus.Info, (LogInfo4 + " " + driver.Title));
+                WindowHandlerTest.test.Log(LogStatus.Info, LogInfo4 + driver.Title);
 
                 //You can verify the title of new window to verify whether is in focus or not.
                 Assert.AreEqual(expectedNewWindowTitle, driver.Title);

@@ -25,7 +25,7 @@ namespace Orasi.Toolkit.Test.Utils
             extent.LoadConfig(AppDomain.CurrentDomain.BaseDirectory + "../../extent-config.xml");
             test = extent
                .StartTest("WindowHandlingStartUp", "Open the browser for testing Windows")
-               .AssignCategory("BrowserOpen");
+               .AssignCategory("Windows");
             test.Log(LogStatus.Info, "First test in 'WindowHandlerTest' series");
             try
             {
@@ -48,7 +48,7 @@ namespace Orasi.Toolkit.Test.Utils
         public void ExistTest()
         {
             object J1 = WindowHandler.WaitUntilExists(_driver, By.TagName("title"));
-            dict.TryCatch("Does It Exist?", "Testing Existense of a Window", "Windows",ref J1, "Huzzah!", "Test is beginning.Time is :" + DateTime.Now.ToString("h: mm:ss tt"));
+            dict.TryCatch("WaitUntilExists", "Testing Existense of a Window", "Windows",ref J1, "Huzzah!", "Test is beginning.Time is :" + DateTime.Now.ToString("h: mm:ss tt"));
         }
 
         [Test]

@@ -35,7 +35,7 @@ namespace Orasi.Toolkit.Utils
             }
 
             // Checking to see if this throws
-            test.Log(LogStatus.Info, LogInfo2);
+           // test.Log(LogStatus.Info, LogInfo2);
 
         }
 
