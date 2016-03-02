@@ -47,6 +47,7 @@ namespace Orasi.Toolkit
             {
                 WebDriverWait wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(30));
                 Assert.IsTrue(wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//a[text()='Logout']"))).Displayed);
+                test.Log(LogStatus.Pass, "Logout is visible");
             }
             catch (AssertionException ex)
             {
@@ -86,9 +87,11 @@ namespace Orasi.Toolkit
             extent.Flush();
             _driver.Quit();
         }
+    }
+}
 
         //[Test]
-        public void sleeper()
+        /*public void sleeper()
         {
             Sleeper.sleep(3000);
         }
@@ -100,4 +103,4 @@ namespace Orasi.Toolkit
         //    edr.ReadData(@"C:\Users\Paul\Documents\test.xls", "panther");
         //}
     }
-}
+}*/
