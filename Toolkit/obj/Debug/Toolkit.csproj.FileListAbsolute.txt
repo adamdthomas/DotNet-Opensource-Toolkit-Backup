@@ -175,7 +175,7 @@ C:\Users\michael.mccracken\Source\Repos\DotNet-Opensource-Toolkit\Toolkit\bin\De
 C:\Users\michael.mccracken\Source\Repos\DotNet-Opensource-Toolkit\Toolkit\bin\Debug\nunit.framework.xml
 C:\Users\michael.mccracken\Source\Repos\DotNet-Opensource-Toolkit\Toolkit\bin\Debug\WebDriver.xml
 C:\Users\michael.mccracken\Source\Repos\DotNet-Opensource-Toolkit\Toolkit\bin\Debug\WebDriver.Support.xml
-C:\Users\michael.mccracken\Source\Repos\DotNet-Opensource-Toolkit\Toolkit\obj\Debug\Toolkit.csprojResolveAssemblyReference.cache
 C:\Users\michael.mccracken\Source\Repos\DotNet-Opensource-Toolkit\Toolkit\obj\Debug\Orasi.Toolkit.g.resources
 C:\Users\michael.mccracken\Source\Repos\DotNet-Opensource-Toolkit\Toolkit\obj\Debug\Orasi.Toolkit.dll
 C:\Users\michael.mccracken\Source\Repos\DotNet-Opensource-Toolkit\Toolkit\obj\Debug\Orasi.Toolkit.pdb
+C:\Users\michael.mccracken\Source\Repos\DotNet-Opensource-Toolkit\Toolkit\obj\Debug\Toolkit.csprojResolveAssemblyReference.cache

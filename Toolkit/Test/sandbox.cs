@@ -46,7 +46,7 @@ namespace Orasi.Toolkit
             try
             {
                 WebDriverWait wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(30));
-                Assert.IsTrue(wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//a[text()='Logout']"))).Displayed);
+                Assert.IsTrue(wait.Until(ExpectedConditions.ElementIsVisible(By.LinkText("Logout"))).Displayed);
                 test.Log(LogStatus.Pass, "Logout is visible");
             }
             catch (AssertionException ex)

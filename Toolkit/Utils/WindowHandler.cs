@@ -14,7 +14,8 @@ using Orasi.Toolkit.Utils;
 using Orasi.Toolkit.Utils.WebDriverExtensions;
 using RelevantCodes.ExtentReports;
 using Orasi.Toolkit.Test.Utils;
-
+using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Remote;
 
 namespace Orasi.Toolkit.Utils
 {
@@ -24,7 +25,7 @@ namespace Orasi.Toolkit.Utils
     /// </summary>
     class WindowHandler
     {
-        
+
         private static TimeSpan DefaultTimeout = TimeSpan.FromSeconds(Constants.DEFAULT_PAGE_TIMEOUT);
         public static string MainWindow;
 
@@ -35,13 +36,13 @@ namespace Orasi.Toolkit.Utils
         /// <param name="driver">Webdriver</param>
         /// <param name="ElementMethod">Allows user to input desired method for discovery
         /// </summary>
-        public static Boolean WaitUntilExists(IWebDriver driver, By ElementMethod)
+        public static Boolean WaitUntilExists(IWebDriver driver)
         {
 
             try
             {
                 var wait = new WebDriverWait(driver, DefaultTimeout);
-                wait.Until(ExpectedConditions.ElementExists(ElementMethod));
+                wait.Until(ExpectedConditions.ElementExists(By.TagName("title")));
             }
             catch (WebDriverTimeoutException wdte)
             {
@@ -115,7 +116,10 @@ namespace Orasi.Toolkit.Utils
             }
             return true;
         }
-
+        internal static object SwapToParentWindow(FirefoxDriver _driver, bool mainWindow)
+        {
+            throw new NotImplementedException();
+        }
         //*******************************************************************************************************************
 
         /// <summary>
@@ -149,10 +153,7 @@ namespace Orasi.Toolkit.Utils
 
         }
 
-        internal static object SwapToParentWindow(FirefoxDriver _driver, bool mainWindow)
-        {
-            throw new NotImplementedException();
-        }
+
 
         //*******************************************************************************************************************
 
@@ -165,12 +166,15 @@ namespace Orasi.Toolkit.Utils
         /// <param name="ElementMethod">Allows user to input desired method for discovery</param>
         /// <param name="LinkElement">Defines Element to Wait for in OpenPage</param>
         /// <returns></returns>
-        public static bool SwapToNewWindow(IWebDriver driver, string URL, string WindowTitle, By LinkElement, string LogInfo2, string LogInfo3, string LogInfo4)
+        public static bool SwapToNewWindow(IWebDriver driver, string LogInfo2, string LogInfo3, string LogInfo4)
         {
-           
-                
+
+
             try
             {
+                var URL = @"http://google.com";
+                string WindowTitle = "Google";
+
                 //Navigate to URL 
                 driver.Navigate().GoToUrl(URL);
                 driver.Manage().Window.Maximize();
@@ -184,13 +188,13 @@ namespace Orasi.Toolkit.Utils
                 Thread.Sleep(2000); //Static wait is not recommended
                 if (parentWindow == expectedNewWindowTitle)
                 {
-                    WindowHandlerTest.test.Log(LogStatus.Info, LogInfo2 + driver.Title);
+                    TestSetup.test.Log(LogStatus.Info, LogInfo2 + driver.Title);
                 }
-                
-                
+
+
 
                 //Click on the link to open new window
-                IWebElement OpenPage = driver.FindElement(LinkElement);
+                IWebElement OpenPage = driver.FindElement(By.Name("btnI"));
                 OpenPage.Click();
 
                 Thread.Sleep(2000); //Static wait is not recommended
@@ -201,7 +205,7 @@ namespace Orasi.Toolkit.Utils
                 //If allWindowHandles.Count is greater than 1 then you can say that new window has been opened.
                 if (allWindowHandles.Count > 1)
                 {
-                    WindowHandlerTest.test.Log(LogStatus.Info, LogInfo3);
+                    TestSetup.test.Log(LogStatus.Info, LogInfo3);
                 }
 
                 //Get new window handle
@@ -210,7 +214,7 @@ namespace Orasi.Toolkit.Utils
                     if (allWindowHandles[i] != parentWindow)
                     {
                         newWindow = allWindowHandles[i];
-                        WindowHandlerTest.test.Log(LogStatus.Info, LogInfo4 + driver.Title);
+                        TestSetup.test.Log(LogStatus.Info, LogInfo4 + driver.Title);
                     }
                 }
 
@@ -227,6 +231,52 @@ namespace Orasi.Toolkit.Utils
                 throw nswe;
             }
             return false;
+        }
+
+//*******************************************************************************************************
+
+        public static bool NavigateToURL(IWebDriver driver)
+        {
+
+            try
+            {
+                var URL = @"http://google.com";
+                string WindowTitle = "Google";
+
+                driver.Navigate().GoToUrl(URL);
+                driver.Manage().Window.Maximize();
+                string parentWindow = driver.CurrentWindowHandle;
+                string expectedNewWindowTitle = WindowTitle;                
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return true;
+        }
+
+//*********************************************************************************************************
+
+        public static void CloseAll(IWebDriver driver)
+        {
+            var Browser = ExpectedConditions.ElementExists(By.Id("title"));
+                if (Browser != null)
+                   driver.Quit();                    
+        }
+
+//*******************************************************************************************************
+
+        public static void OpenNewWindow(IWebDriver driver, String WindowTitle)
+        {
+            string parentWindow = driver.CurrentWindowHandle;
+            string expectedNewWindowTitle = WindowTitle;
+
+            Thread.Sleep(2000); //Static wait is not recommended
+            if (parentWindow == expectedNewWindowTitle)
+            {
+
+            }
+
         }
     }
 }

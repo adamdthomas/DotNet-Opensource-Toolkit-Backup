@@ -143,6 +143,7 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="Test\Class1.cs" />
     <Compile Include="Test\sandbox.cs" />
     <Compile Include="Test\Utils\ExcelDocumentReaderTest.cs" />
     <Compile Include="Test\Utils\FrameHandlerTest.cs" />
@@ -152,11 +153,13 @@
     <Compile Include="Test\Utils\WindowHandlerTest.cs" />
     <Compile Include="Utils\AlertHandler.cs" />
     <Compile Include="Utils\Base64Encoder.cs" />
+    <Compile Include="Utils\ChromeWindowHandler.cs" />
     <Compile Include="Utils\Constants.cs" />
     <Compile Include="Utils\dict.cs" />
     <Compile Include="Utils\ExcelDocumentReader.cs" />
     <Compile Include="Utils\ExtentManager.cs" />
     <Compile Include="Utils\FrameHandler.cs" />
+    <Compile Include="Utils\Setup.cs" />
     <Compile Include="Utils\Sleeper.cs" />
     <Compile Include="Utils\WebDriverExtensions.cs" />
     <Compile Include="Utils\WindowHandler.cs" />
