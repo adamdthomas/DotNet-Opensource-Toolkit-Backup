@@ -173,10 +173,10 @@ namespace Orasi.Toolkit.Utils
             try
             {
                 var URL = @"http://google.com";
-                string WindowTitle = "Google";
-                string LogInfo2 = "Parent Window Title: ";
-                string LogInfo3 = "New window has been opened.";
-                string LogInfo4 = "New Window Title: ";
+                //string WindowTitle = "Google";
+                //string LogInfo2 = "Parent Window Title: ";
+                //string LogInfo3 = "New window has been opened.";
+                //string LogInfo4 = "New Window Title: ";
                 //Navigate to URL 
                 driver.Navigate().GoToUrl(URL);
                 driver.Manage().Window.Maximize();
@@ -185,12 +185,12 @@ namespace Orasi.Toolkit.Utils
                 string parentWindow = driver.CurrentWindowHandle;
 
                 string newWindow = "";
-                string expectedNewWindowTitle = WindowTitle;
+                string expectedNewWindowTitle = "Google";
 
                 Thread.Sleep(2000); //Static wait is not recommended
                 if (parentWindow == expectedNewWindowTitle)
                 {
-                    TestSetup.test.Log(LogStatus.Info, LogInfo2 + driver.Title);
+                    TestSetup.test.Log(LogStatus.Info, "Parent Window Title: " + driver.Title);
                 }
 
 
@@ -207,7 +207,7 @@ namespace Orasi.Toolkit.Utils
                 //If allWindowHandles.Count is greater than 1 then you can say that new window has been opened.
                 if (allWindowHandles.Count > 1)
                 {
-                    TestSetup.test.Log(LogStatus.Info, LogInfo3);
+                    TestSetup.test.Log(LogStatus.Info, "New window has been opened.");
                 }
 
                 //Get new window handle
@@ -216,7 +216,7 @@ namespace Orasi.Toolkit.Utils
                     if (allWindowHandles[i] != parentWindow)
                     {
                         newWindow = allWindowHandles[i];
-                        TestSetup.test.Log(LogStatus.Info, LogInfo4 + driver.Title);
+                        TestSetup.test.Log(LogStatus.Info, "New Window Title: " + driver.Title);
                     }
                 }
 
@@ -242,13 +242,13 @@ namespace Orasi.Toolkit.Utils
 
             try
             {
-                var URL = @"http://google.com";
-                string WindowTitle = "Google";
+                //var URL = @"http://google.com";
+                //string WindowTitle = "Google";
 
-                driver.Navigate().GoToUrl(URL);
+                driver.Navigate().GoToUrl("http://google.com");
                 driver.Manage().Window.Maximize();
                 string parentWindow = driver.CurrentWindowHandle;
-                string expectedNewWindowTitle = WindowTitle;                
+                //string expectedNewWindowTitle = "Google";                
             }
             catch (Exception ex)
             {

@@ -116,12 +116,12 @@ namespace Orasi.Toolkit.Test.Utils
         }
 
         [Test]
-        public void NavigateToURL()
+        public void NavigateToURLTest()
         {
             //var URL = @"http://google.com";
             //string WindowTitle = "Google";
             //object MethodName = WindowHandler.NavigateToURL(_driver, URL, WindowTitle);
-            dict.TryCatch("NavigateToURLTest", "Test to navigate to a url", "Windows",  "Success");
+            dict.TryCatch("NavigateToURLTest", "Test to navigate to a url", "Windows",  "Success", "Test is beginning. Time is :" + DateTime.Now.ToString("h:mm:ss tt"));
         }
 
        
