@@ -166,7 +166,7 @@ namespace Orasi.Toolkit.Utils
         /// <param name="ElementMethod">Allows user to input desired method for discovery</param>
         /// <param name="LinkElement">Defines Element to Wait for in OpenPage</param>
         /// <returns></returns>
-        public static bool SwapToNewWindow(IWebDriver driver, string LogInfo2, string LogInfo3, string LogInfo4)
+        public static bool SwapToNewWindow(IWebDriver driver)
         {
 
 
@@ -174,7 +174,9 @@ namespace Orasi.Toolkit.Utils
             {
                 var URL = @"http://google.com";
                 string WindowTitle = "Google";
-
+                string LogInfo2 = "Parent Window Title: ";
+                string LogInfo3 = "New window has been opened.";
+                string LogInfo4 = "New Window Title: ";
                 //Navigate to URL 
                 driver.Navigate().GoToUrl(URL);
                 driver.Manage().Window.Maximize();
