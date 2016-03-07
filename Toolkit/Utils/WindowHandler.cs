@@ -36,13 +36,13 @@ namespace Orasi.Toolkit.Utils
         /// <param name="driver">Webdriver</param>
         /// <param name="ElementMethod">Allows user to input desired method for discovery
         /// </summary>
-        public static Boolean WaitUntilExists(IWebDriver driver)
+        public static Boolean WaitUntilExists(IWebDriver driver, By ElementMethod)
         {
 
             try
             {
                 var wait = new WebDriverWait(driver, DefaultTimeout);
-                wait.Until(ExpectedConditions.ElementExists(By.TagName("title")));
+                wait.Until(ExpectedConditions.ElementExists(ElementMethod));
             }
             catch (WebDriverTimeoutException wdte)
             {
@@ -88,8 +88,8 @@ namespace Orasi.Toolkit.Utils
 
             {
 
-                Console.WriteLine("Exception ******" + ex.StackTrace);
-                return false;
+                throw ex;
+                
             }
             return true;
         }
@@ -106,6 +106,7 @@ namespace Orasi.Toolkit.Utils
         {
             try
             {
+                setCurrentWindow(driver);
                 driver.SwitchTo().Window(MainWindow); // switch back to the original window
             }
             catch (Exception ex)
@@ -116,11 +117,11 @@ namespace Orasi.Toolkit.Utils
             }
             return true;
         }
-        internal static object SwapToParentWindow(FirefoxDriver _driver, bool mainWindow)
-        {
-            throw new NotImplementedException();
-        }
-        //*******************************************************************************************************************
+       // internal static object SwapToParentWindow(FirefoxDriver _driver, bool mainWindow)
+        //{
+       //     throw new NotImplementedException();
+        //}
+//*******************************************************************************************************************
 
         /// <summary>
         /// Terminates the program fed from the user
@@ -155,81 +156,105 @@ namespace Orasi.Toolkit.Utils
 
 
 
-        //*******************************************************************************************************************
-
+//*******************************************************************************************************************
+        
         /// <summary>
         /// Method opens a link in a new window by finding element and shifts focus to it. '(By.Id("")
         /// </summary>
         /// <param name="driver">WebDriver</param>
         /// <param name="URL">Desired page URL</param>
-        /// <param name="WindowTitle"> Title to be expected for expectedNewWindowTitle</param>
-        /// <param name="ElementMethod">Allows user to input desired method for discovery</param>
-        /// <param name="LinkElement">Defines Element to Wait for in OpenPage</param>
+        /// <param name="expectedWindowTitle">Title to be expected for Parent Window</param>
+        /// <param name="Method">Allows user to input desired method for discovery</param>
+        /// <param name="expectedNewWindowTitle">Title to be expected for Child Window</param>
         /// <returns></returns>
-        public static bool SwapToNewWindow(IWebDriver driver)
+
+        public static bool SwapToNewWindow(IWebDriver driver, string URL, string expectedWindowTitle,  By Method, string expectedNewWindowTitle)
         {
 
 
             try
             {
-                var URL = @"http://google.com";
-                //string WindowTitle = "Google";
-                //string LogInfo2 = "Parent Window Title: ";
-                //string LogInfo3 = "New window has been opened.";
-                //string LogInfo4 = "New Window Title: ";
-                //Navigate to URL 
                 driver.Navigate().GoToUrl(URL);
-                driver.Manage().Window.Maximize();
+
 
                 //Get Parent Window Handle
-                string parentWindow = driver.CurrentWindowHandle;
-
+                string parentHandle = driver.CurrentWindowHandle;
+                string parentWindow = driver.Title;
+                //string expectedNewWindowTitle = "Sign in - Google Accounts";
                 string newWindow = "";
-                string expectedNewWindowTitle = "Google";
+                //string expectedWindowTitle = "Google";
+     
 
                 Thread.Sleep(2000); //Static wait is not recommended
-                if (parentWindow == expectedNewWindowTitle)
+
+                if (parentWindow == expectedWindowTitle)
                 {
-                    TestSetup.test.Log(LogStatus.Info, "Parent Window Title: " + driver.Title);
+                    TestSetup.test.Log(LogStatus.Pass, "Parent Window Title: " + driver.Title);
+                }
+                else
+                {
+                    TestSetup.test.Log(LogStatus.Fail, "Parent Window and Expected Window do not match: " + parentWindow + " : " + expectedWindowTitle);
                 }
 
 
-
                 //Click on the link to open new window
-                IWebElement OpenPage = driver.FindElement(By.Name("btnI"));
-                OpenPage.Click();
+                bool IsElementDisplayed = driver.FindElement(Method).Displayed;
+                if (IsElementDisplayed == true)
+                {
+    
 
-                Thread.Sleep(2000); //Static wait is not recommended
+                    var Check = driver.FindElement(Method);
+                    Check.SendKeys(OpenQA.Selenium.Keys.Shift + OpenQA.Selenium.Keys.Enter);
+                    Thread.Sleep(2000); //Static wait is not recommended
+                    var NewHandle = driver.CurrentWindowHandle;
+                    TestSetup.test.Log(LogStatus.Pass, "Object was found");
+
+
+                }
+                else
+                {
+                    TestSetup.test.Log(LogStatus.Fail, ("The object could not be found"));
+                }
+
+               
+
+
+
 
                 //Store all window handles in a list
                 IList<string> allWindowHandles = driver.WindowHandles;
+                
 
                 //If allWindowHandles.Count is greater than 1 then you can say that new window has been opened.
                 if (allWindowHandles.Count > 1)
                 {
-                    TestSetup.test.Log(LogStatus.Info, "New window has been opened.");
+                    Console.WriteLine("New window has been opened.");
+                    TestSetup.test.Log(LogStatus.Pass, "Current Window Count: " + allWindowHandles.Count);
                 }
-
+                else
+                {
+                    TestSetup.test.Log(LogStatus.Fail, "Current Window Count: " + allWindowHandles.Count);
+                }
                 //Get new window handle
                 for (int i = 0; i < allWindowHandles.Count; i++)
                 {
-                    if (allWindowHandles[i] != parentWindow)
+                    if (allWindowHandles[i] != parentHandle)
                     {
                         newWindow = allWindowHandles[i];
-                        TestSetup.test.Log(LogStatus.Info, "New Window Title: " + driver.Title);
                     }
                 }
 
                 //Switch to new window handle.
                 driver.SwitchTo().Window(newWindow);
-
-                //WindowHandlerTest.test.Log(LogStatus.Info, LogInfo4 + driver.Title);
+                TestSetup.test.Log(LogStatus.Pass, "New Window Title: " + driver.Title + "; New Handle: " + newWindow + ". Parent Title: " + parentWindow + "; Parent Handle: " + parentHandle + ".");
 
                 //You can verify the title of new window to verify whether is in focus or not.
                 Assert.AreEqual(expectedNewWindowTitle, driver.Title);
+
             }
             catch (NoSuchWindowException nswe)
             {
+                TestSetup.test.Log(LogStatus.Fail, "The navigation was unsuccessful.");
                 throw nswe;
             }
             return false;
@@ -239,13 +264,13 @@ namespace Orasi.Toolkit.Utils
 
         public static bool NavigateToURL(IWebDriver driver)
         {
-
+            
             try
             {
-                //var URL = @"http://google.com";
+                var URL = @"http://google.com";
                 //string WindowTitle = "Google";
 
-                driver.Navigate().GoToUrl("http://google.com");
+                driver.Navigate().GoToUrl(URL);
                 driver.Manage().Window.Maximize();
                 string parentWindow = driver.CurrentWindowHandle;
                 //string expectedNewWindowTitle = "Google";                

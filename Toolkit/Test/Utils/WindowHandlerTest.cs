@@ -68,28 +68,61 @@ namespace Orasi.Toolkit.Test.Utils
 
 
         [Test]
-        public void ExistTest()
+        public void WaitUntilExistsTest()
         {
+            TestSetup.TestStartup("WaitUntilExists", "Testing Existence of a Window", "Windows", "Test is beginning.Time is :" + DateTime.Now.ToString("h: mm:ss tt"));
+
+            try
+            {
+
+                WindowHandler.WaitUntilExists(_driver, By.TagName("title"));
+                TestSetup.test.Log(LogStatus.Pass, "");
+            }
+            catch (Exception ex)
+            {
+                TestSetup.test.Log(LogStatus.Fail, "<pre>" + ex.StackTrace + "</pre>");
+                throw;
+            }
 
 
+            
 
-            //object J1 = WindowHandler.WaitUntilExists(_driver, By.TagName("title"));
-            dict.TryCatch("WaitUntilExists", "Testing Existense of a Window", "Windows", "Huzzah!", "Test is beginning.Time is :" + DateTime.Now.ToString("h: mm:ss tt"));
         }
 
         [Test]
         public void SetCurrentWindowTest()
         {
             //object MethodName = WindowHandler.setCurrentWindow(_driver);
-            dict.TryCatch("SetCurrentWindowTest", "Test checks the Current Window and prints to the Console", "Windows",  "The Current Window is accurate", "Test is beginning. Time is :" + DateTime.Now.ToString("h:mm:ss tt"));
+            TestSetup.TestStartup("SetCurrentWindowTest", "Test checks the Current Window and prints to the Console", "Windows", "Test is beginning. Time is :" + DateTime.Now.ToString("h:mm:ss tt"));
+            try
+            {
+                WindowHandler.setCurrentWindow(_driver);
+                TestSetup.test.Log(LogStatus.Pass, "");
+            }
+            catch (NoSuchWindowException nswe)
+            {
+                TestSetup.test.Log(LogStatus.Fail, "<pre>" + nswe.StackTrace + "</pre>");
+            }
         }
+
 
         [Test]
         public void SwaptoParent()
         {
-            var MainWindow = "";
-            object MethodName = WindowHandler.SwapToParentWindow(_driver, MainWindow);
-            dict.TryCatch("SwapToParentWindowTest", "Test moves to Main Window", "Windows",  "The Current Window is accurate", "Test is beginning. Time is :" + DateTime.Now.ToString("h:mm:ss tt"));
+            TestSetup.TestStartup("SwapToParentWindowTest", "Test moves to Main Window", "Windows", "Test is beginning. Time is :" + DateTime.Now.ToString("h:mm:ss tt"));
+            try
+            {
+                var MainWindow = "";
+                WindowHandler.SwapToParentWindow(_driver, MainWindow);
+                TestSetup.test.Log(LogStatus.Pass, "");
+            }
+            catch (Exception ex)
+            {
+                TestSetup.test.Log(LogStatus.Fail, "<pre>" + ex.StackTrace + "</pre>");
+                throw;
+            }
+         
+           
 
 
         }
@@ -97,22 +130,40 @@ namespace Orasi.Toolkit.Test.Utils
         [Test]
         public void KillTest()
         {
-            object MethodName = WindowHandler.Killer("Firefox.exe");
-            dict.TryCatch("KillerTest", "Kills process (By Name) that user specifies", "Windows",  "The Current Window is accurate", "Test is beginning. Time is :" + DateTime.Now.ToString("h:mm:ss tt"));
+            TestSetup.TestStartup("KillerTest", "Kills process (By Name) that user specifies", "Windows",  "Test is beginning. Time is :" + DateTime.Now.ToString("h:mm:ss tt"));
+            try
+            {
+                var ProcessName = "Firefox.exe";
+                WindowHandler.Killer(ProcessName);
+                TestSetup.test.Log(LogStatus.Pass, "");
+            }
+            catch (Exception ex)
+            {
+                TestSetup.test.Log(LogStatus.Fail, "<pre>" + ex.StackTrace + "</pre>");
+                throw;
+            }
         }
 
         [Test]
         public void NewWindowTest()
         {
-            //var URL = @"http://google.com";
+            var URL = "http://google.com";
             //var WindowTitle = "Google";
-            //var LinkMethod = By.Name("btnI");
-            //string LogInfo2 = "Parent Window Title: ";
-            //string LogInfo3 = "New window has been opened.";
-            //string LogInfo4 = "New Window Title: ";
-            //object WinMethodName = WindowHandler.SwapToNewWindow(_driver, URL, WindowTitle, LogInfo2, LogInfo3, LogInfo4);
-            dict.TryCatch("NewWindowTest", "Test to open a new Window and change focus to it", "Windows", "Test has reached the new window.", "Test is beginning. Time is :" + DateTime.Now.ToString("h:mm:ss tt"));
+            var LinkMethod =  By.Id("gb_70");
+            string ParentTitle = "Google";
+            string ChildTitle = "Sign in - Google Accounts";
+           
+            TestSetup.TestStartup("NewWindowTest", "Test to open a new Window and change focus to it", "Windows", "Test is beginning. Time is :" + DateTime.Now.ToString("h:mm:ss tt"));
 
+            try
+            {
+                WindowHandler.SwapToNewWindow(_driver, URL, ParentTitle,  LinkMethod, ChildTitle);
+                TestSetup.test.Log(LogStatus.Pass, "");
+            }
+            catch (Exception ex)
+            {
+                TestSetup.test.Log(LogStatus.Fail, "<pre>" + ex.StackTrace + "</pre>");
+            }
         }
 
         [Test]
@@ -121,7 +172,16 @@ namespace Orasi.Toolkit.Test.Utils
             //var URL = @"http://google.com";
             //string WindowTitle = "Google";
             //object MethodName = WindowHandler.NavigateToURL(_driver, URL, WindowTitle);
-            dict.TryCatch("NavigateToURLTest", "Test to navigate to a url", "Windows",  "Success", "Test is beginning. Time is :" + DateTime.Now.ToString("h:mm:ss tt"));
+            TestSetup.TestStartup("NavigateToURLTest", "Test to navigate to a url", "Windows", "Test is beginning. Time is :" + DateTime.Now.ToString("h:mm:ss tt"));
+            try
+            {
+                WindowHandler.NavigateToURL(_driver);
+            }
+            catch (Exception ex)
+            {
+                TestSetup.test.Log(LogStatus.Fail, "<pre>" + ex.StackTrace + "</pre>");
+                
+            }
         }
 
        

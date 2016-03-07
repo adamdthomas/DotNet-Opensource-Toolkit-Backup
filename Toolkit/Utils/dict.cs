@@ -16,11 +16,7 @@ namespace Orasi.Toolkit.Utils
 
         internal static void TryCatch(string StartTitle, string StartDescription, string CatName, /*ref object MethodInput,*/ string PassLog, string LogInfo1 = default(string), string LogInfo2 = default(string), string LogInfo3 = default(string), string LogInfo4 = default(string), string LogInfo5 = default(string))
         {
-            extent.LoadConfig(AppDomain.CurrentDomain.BaseDirectory + "../../extent-config.xml");
-            test = extent
-               .StartTest(StartTitle, StartDescription)
-               .AssignCategory(CatName);
-            test.Log(LogStatus.Info, LogInfo1);
+            
 
 
             try
