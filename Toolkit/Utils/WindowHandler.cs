@@ -170,14 +170,14 @@ namespace Orasi.Toolkit.Utils
 
         public static bool SwapToNewWindow(IWebDriver driver /*, string URL, string expectedWindowTitle,  By Method, string expectedNewWindowTitle*/)
         {
-            var URL = "http://google.com";
+            //var URL = "http://google.com";
             var Method = By.Id("gb_70");
             string expectedWindowTitle = "Google";
             string expectedNewWindowTitle = "Sign in - Google Accounts";
 
             try
             {
-                driver.Navigate().GoToUrl(URL);
+                driver.Navigate().GoToUrl("http://google.com");
 
 
                 //Get Parent Window Handle
@@ -270,10 +270,10 @@ namespace Orasi.Toolkit.Utils
             
             try
             {
-                var URL = @"http://google.com";
+                //var URL = @"http://google.com";
                 //string WindowTitle = "Google";
 
-                driver.Navigate().GoToUrl(URL);
+                driver.Navigate().GoToUrl("http://google.com");
                 driver.Manage().Window.Maximize();
                 string parentWindow = driver.CurrentWindowHandle;
                 //string expectedNewWindowTitle = "Google";                
