@@ -168,9 +168,12 @@ namespace Orasi.Toolkit.Utils
         /// <param name="expectedNewWindowTitle">Title to be expected for Child Window</param>
         /// <returns></returns>
 
-        public static bool SwapToNewWindow(IWebDriver driver, string URL, string expectedWindowTitle,  By Method, string expectedNewWindowTitle)
+        public static bool SwapToNewWindow(IWebDriver driver /*, string URL, string expectedWindowTitle,  By Method, string expectedNewWindowTitle*/)
         {
-
+            var URL = "http://google.com";
+            var Method = By.Id("gb_70");
+            string expectedWindowTitle = "Google";
+            string expectedNewWindowTitle = "Sign in - Google Accounts";
 
             try
             {

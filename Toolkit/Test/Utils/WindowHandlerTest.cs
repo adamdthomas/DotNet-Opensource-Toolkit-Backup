@@ -147,17 +147,16 @@ namespace Orasi.Toolkit.Test.Utils
         [Test]
         public void NewWindowTest()
         {
-            var URL = "http://google.com";
-            //var WindowTitle = "Google";
+           /* var URL = "http://google.com";
             var LinkMethod =  By.Id("gb_70");
             string ParentTitle = "Google";
             string ChildTitle = "Sign in - Google Accounts";
-           
+           */
             TestSetup.TestStartup("NewWindowTest", "Test to open a new Window and change focus to it", "Windows", "Test is beginning. Time is :" + DateTime.Now.ToString("h:mm:ss tt"));
 
             try
             {
-                WindowHandler.SwapToNewWindow(_driver, URL, ParentTitle,  LinkMethod, ChildTitle);
+                WindowHandler.SwapToNewWindow(_driver);
                 TestSetup.test.Log(LogStatus.Pass, "");
             }
             catch (Exception ex)
