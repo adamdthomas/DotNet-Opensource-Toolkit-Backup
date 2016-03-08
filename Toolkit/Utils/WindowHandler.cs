@@ -171,12 +171,12 @@ namespace Orasi.Toolkit.Utils
         public static bool SwapToNewWindow(IWebDriver driver /*, string URL, string expectedWindowTitle,  By Method, string expectedNewWindowTitle*/)
         {
             //var URL = "http://google.com";
-            var Method = By.Id("gb_70");
+            //var Method = By.Id("gb_70");
             string expectedWindowTitle = "Google";
             string expectedNewWindowTitle = "Sign in - Google Accounts";
 
-            try
-            {
+          //  try
+           // {
                 driver.Navigate().GoToUrl("http://google.com");
 
 
@@ -201,13 +201,13 @@ namespace Orasi.Toolkit.Utils
 
 
                 //Click on the link to open new window
-                bool IsElementDisplayed = driver.FindElement(Method).Displayed;
+                bool IsElementDisplayed = driver.FindElement(By.Id("gb_70")).Displayed;
                 if (IsElementDisplayed == true)
                 {
     
 
-                    var Check = driver.FindElement(Method);
-                    Check.SendKeys(OpenQA.Selenium.Keys.Shift + OpenQA.Selenium.Keys.Enter);
+                    var Check = driver.FindElement(By.Id("gb_70"));
+                    Check.SendKeys(Keys.Shift + Keys.Enter);
                     Thread.Sleep(2000); //Static wait is not recommended
                     var NewHandle = driver.CurrentWindowHandle;
                     TestSetup.test.Log(LogStatus.Pass, "Object was found");
@@ -253,6 +253,7 @@ namespace Orasi.Toolkit.Utils
 
                 //You can verify the title of new window to verify whether is in focus or not.
                 Assert.AreEqual(expectedNewWindowTitle, driver.Title);
+/*
 
             }
             catch (NoSuchWindowException nswe)
@@ -260,7 +261,7 @@ namespace Orasi.Toolkit.Utils
                 TestSetup.test.Log(LogStatus.Fail, "The navigation was unsuccessful.");
                 throw nswe;
             }
-            return false;
+ */           return false;
         }
 
 //*******************************************************************************************************

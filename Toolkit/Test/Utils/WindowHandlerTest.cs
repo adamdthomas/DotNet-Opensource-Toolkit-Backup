@@ -76,7 +76,7 @@ namespace Orasi.Toolkit.Test.Utils
             {
 
                 WindowHandler.WaitUntilExists(_driver, By.TagName("title"));
-                TestSetup.test.Log(LogStatus.Pass, "");
+                TestSetup.test.Log(LogStatus.Pass, "Test passed");
             }
             catch (Exception ex)
             {
@@ -97,7 +97,7 @@ namespace Orasi.Toolkit.Test.Utils
             try
             {
                 WindowHandler.setCurrentWindow(_driver);
-                TestSetup.test.Log(LogStatus.Pass, "");
+                TestSetup.test.Log(LogStatus.Pass, "Test passed");
             }
             catch (NoSuchWindowException nswe)
             {
@@ -114,7 +114,7 @@ namespace Orasi.Toolkit.Test.Utils
             {
                 var MainWindow = "";
                 WindowHandler.SwapToParentWindow(_driver, MainWindow);
-                TestSetup.test.Log(LogStatus.Pass, "");
+                TestSetup.test.Log(LogStatus.Pass, "Test passed");
             }
             catch (Exception ex)
             {
@@ -135,7 +135,7 @@ namespace Orasi.Toolkit.Test.Utils
             {
                 var ProcessName = "Firefox.exe";
                 WindowHandler.Killer(ProcessName);
-                TestSetup.test.Log(LogStatus.Pass, "");
+                TestSetup.test.Log(LogStatus.Pass, "Test passed");
             }
             catch (Exception ex)
             {
@@ -157,7 +157,7 @@ namespace Orasi.Toolkit.Test.Utils
             try
             {
                 WindowHandler.SwapToNewWindow(_driver);
-                TestSetup.test.Log(LogStatus.Pass, "");
+                TestSetup.test.Log(LogStatus.Pass, "Test passed");
             }
             catch (Exception ex)
             {
@@ -175,10 +175,11 @@ namespace Orasi.Toolkit.Test.Utils
             try
             {
                 WindowHandler.NavigateToURL(_driver);
+                TestSetup.test.Log(LogStatus.Pass, "Test passed");
             }
             catch (Exception ex)
             {
-                TestSetup.test.Log(LogStatus.Fail, "<pre>" + ex.StackTrace + "</pre>");
+                TestSetup.test.Log(LogStatus.Fail, "The navigation was unsuccessful." + "<pre>" + ex.StackTrace + "</pre>");
                 
             }
         }
