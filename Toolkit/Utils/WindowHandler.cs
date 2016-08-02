@@ -20,7 +20,7 @@ namespace Orasi.Toolkit.Utils
 {
 
     /// <summary>
-    /// Class to Handle Windows
+    /// Class to Handle Windows outside of browser
     /// </summary>
     class WindowHandler
     {
