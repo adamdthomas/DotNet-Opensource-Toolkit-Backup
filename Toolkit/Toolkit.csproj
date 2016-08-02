@@ -158,7 +158,6 @@
     <Compile Include="Utils\ExtentManager.cs" />
     <Compile Include="Utils\FrameHandler.cs" />
     <Compile Include="Utils\Sleeper.cs" />
-    <Compile Include="Utils\WebDriverExtensions.cs" />
     <Compile Include="Utils\WindowHandler.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -2,16 +2,11 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
-using Orasi.Toolkit.Utils;
-using Orasi.Toolkit.Utils.WebDriverExtensions;
 using RelevantCodes.ExtentReports;
 using Orasi.Toolkit.Test.Utils;
 

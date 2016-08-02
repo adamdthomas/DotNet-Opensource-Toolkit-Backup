@@ -179,3 +179,5 @@ C:\Users\michael.mccracken\Source\Repos\DotNet-Opensource-Toolkit\Toolkit\obj\De
 C:\Users\michael.mccracken\Source\Repos\DotNet-Opensource-Toolkit\Toolkit\obj\Debug\Orasi.Toolkit.g.resources
 C:\Users\michael.mccracken\Source\Repos\DotNet-Opensource-Toolkit\Toolkit\obj\Debug\Orasi.Toolkit.dll
 C:\Users\michael.mccracken\Source\Repos\DotNet-Opensource-Toolkit\Toolkit\obj\Debug\Orasi.Toolkit.pdb
+C:\Users\Adam\Source\Repos\DotNet-Opensource-Toolkit\Toolkit\obj\Debug\Toolkit.csprojResolveAssemblyReference.cache
+C:\Users\Adam\Source\Repos\DotNet-Opensource-Toolkit\Toolkit\obj\Debug\Orasi.Toolkit.g.resources
