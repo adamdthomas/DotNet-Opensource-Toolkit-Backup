@@ -550,7 +550,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="orasi\api\" />
-    <Folder Include="test\sample_application\" />
+    <Folder Include="test\orasi\api\" />
+    <Folder Include="test\orasi\core\" />
+    <Folder Include="test\sample_application\pages\" />
+    <Folder Include="test\sample_application\tests\" />
   </ItemGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
