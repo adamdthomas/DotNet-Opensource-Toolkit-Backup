@@ -143,13 +143,22 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
-    <Compile Include="toolkit_self_test\sandbox.cs" />
-    <Compile Include="toolkit_self_test\Utils\ExcelDocumentReaderTest.cs" />
-    <Compile Include="toolkit_self_test\Utils\FrameHandlerTest.cs" />
-    <Compile Include="toolkit_self_test\Utils\AlertHandlerTest.cs" />
+    <Compile Include="orasi\core\interfaces\Button.cs" />
+    <Compile Include="orasi\core\interfaces\Checkbox.cs" />
+    <Compile Include="orasi\core\interfaces\Element.cs" />
+    <Compile Include="orasi\core\interfaces\Label.cs" />
+    <Compile Include="orasi\core\interfaces\Link.cs" />
+    <Compile Include="orasi\core\interfaces\Listbox.cs" />
+    <Compile Include="orasi\core\interfaces\RadioGroup.cs" />
+    <Compile Include="orasi\core\interfaces\TextBox.cs" />
+    <Compile Include="orasi\core\interfaces\WebTable.cs" />
+    <Compile Include="test\sandbox.cs" />
+    <Compile Include="test\orasi\utils\ExcelDocumentReaderTest.cs" />
+    <Compile Include="test\orasi\utils\FrameHandlerTest.cs" />
+    <Compile Include="test\orasi\utils\AlertHandlerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="toolkit_self_test\Utils\Base64EncoderTest.cs" />
-    <Compile Include="toolkit_self_test\Utils\WindowHandlerTest.cs" />
+    <Compile Include="test\orasi\utils\Base64EncoderTest.cs" />
+    <Compile Include="test\orasi\utils\WindowHandlerTest.cs" />
     <Compile Include="orasi\utils\AlertHandler.cs" />
     <Compile Include="orasi\utils\Base64Encoder.cs" />
     <Compile Include="orasi\utils\Constants.cs" />
@@ -541,7 +550,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="orasi\api\" />
-    <Folder Include="orasi\core\" />
+    <Folder Include="test\sample_application\" />
   </ItemGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
