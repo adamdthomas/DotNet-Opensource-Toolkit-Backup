@@ -8,7 +8,7 @@ namespace Orasi.Toolkit.Utils
     /// </summary>
     class FrameHandler
     {
-        private static TimeSpan DefaultTimeout = TimeSpan.FromSeconds(Constants.DEFAULT_PAGE_TIMEOUT);
+        private static TimeSpan DefaultTimeout = TimeSpan.FromSeconds(Constants.PAGE_TIMEOUT);
 
         /// <summary>
         /// Method get the current frame name</summary>

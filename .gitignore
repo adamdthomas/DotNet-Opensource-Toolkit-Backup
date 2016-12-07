@@ -2,5 +2,5 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-*.suo
+/Toolkit/.vs/Toolkit/v14
 /Toolkit/obj/Debug
