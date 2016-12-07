@@ -143,6 +143,14 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="tests\orasi\utils\AlertHandlerTest.cs" />
+    <Compile Include="tests\orasi\utils\Base64EncoderTest.cs" />
+    <Compile Include="tests\orasi\utils\ExcelDocumentReaderTest.cs" />
+    <Compile Include="tests\orasi\utils\FrameHandlerTest.cs" />
+    <Compile Include="tests\orasi\utils\WindowHandlerTest.cs" />
+    <Compile Include="tests\sample_application\tests\UnitTest1.cs" />
+    <Compile Include="tests\sandbox.cs" />
     <Compile Include="Test\Class1.cs" />
     <Compile Include="Test\sandbox.cs" />
     <Compile Include="Test\Utils\ExcelDocumentReaderTest.cs" />
@@ -150,6 +158,7 @@
     <Compile Include="Test\Utils\AlertHandlerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Test\Utils\Base64EncoderTest.cs" />
+    <Compile Include="Test\Utils\TestEnvironmentTest.cs" />
     <Compile Include="Test\Utils\WindowHandlerTest.cs" />
     <Compile Include="Utils\AlertHandler.cs" />
     <Compile Include="Utils\Base64Encoder.cs" />
@@ -161,6 +170,8 @@
     <Compile Include="Utils\FrameHandler.cs" />
     <Compile Include="Utils\Setup.cs" />
     <Compile Include="Utils\Sleeper.cs" />
+    <Compile Include="Utils\TestEnvironment.cs" />
+    <Compile Include="Utils\WebDriverExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -546,6 +557,11 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="tests\orasi\api\" />
+    <Folder Include="tests\orasi\core\" />
+    <Folder Include="tests\sample_application\pages\" />
   </ItemGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
