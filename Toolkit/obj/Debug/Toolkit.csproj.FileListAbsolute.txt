@@ -323,3 +323,4 @@ C:\Users\Adam\Source\Repos\DotNet-Opensource-Toolkit\Toolkit\bin\Debug\WebDriver
 C:\Users\Adam\Source\Repos\DotNet-Opensource-Toolkit\Toolkit\bin\Debug\WebDriver.Support.xml
 C:\Users\Adam\Source\Repos\DotNet-Opensource-Toolkit\Toolkit\obj\Debug\Orasi.Toolkit.dll
 C:\Users\Adam\Source\Repos\DotNet-Opensource-Toolkit\Toolkit\obj\Debug\Orasi.Toolkit.pdb
+C:\Users\Adam\Source\Repos\DotNet-Opensource-Toolkit\Toolkit\obj\Debug\Toolkit.csprojResolveAssemblyReference.cache

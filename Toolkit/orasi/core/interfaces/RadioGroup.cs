@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Orasi.Toolkit.orasi.core.interfaces
 {
-    class RadioG_roup
+    class RadioGroup :Element
     {
+
     }
 }

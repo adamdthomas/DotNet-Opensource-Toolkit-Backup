@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Orasi.Toolkit.orasi.core.interfaces
 {
-    class Link
+    class Link : Element
     {
     }
 }

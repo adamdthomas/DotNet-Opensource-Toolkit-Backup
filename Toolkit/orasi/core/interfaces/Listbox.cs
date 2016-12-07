@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Orasi.Toolkit.orasi.core.interfaces
 {
-    class Listbox
+    class Listbox : Element
     {
     }
 }
